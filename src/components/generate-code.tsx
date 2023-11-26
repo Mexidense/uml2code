@@ -5,18 +5,23 @@ import {CodeBlockViewer} from "@uml2code/components/code-block-viewer";
 
 interface GenerateCodeProps {
     setLoading: (value: boolean) => void;
+    loading: boolean;
 }
 
-export function GenerateCode({ setLoading }: GenerateCodeProps) {
+export function GenerateCode({ setLoading, loading }: GenerateCodeProps) {
     const [generatedCode, setGeneratedCode] = useState('');
     const handleCodeUpdate = (newCode: string) => {
         setGeneratedCode(newCode);
     };
 
     return (
-        <div>
-            <ImageFileUploader onCodeUpdate={handleCodeUpdate} setLoading={setLoading} />
-            <CodeBlockViewer generatedCode={generatedCode} />
-        </div>
+        <>
+            {
+                !loading && <div>
+                    <ImageFileUploader onCodeUpdate={handleCodeUpdate} setLoading={setLoading} />
+                    <CodeBlockViewer generatedCode={generatedCode} />
+                </div>
+            }
+        </>
     );
 }

@@ -76,13 +76,20 @@ export function ImageFileUploader({ onCodeUpdate, setLoading }: ImageFileUploade
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                height: '50px',
-                width: '300px',
-                border: '1px dotted',
+                height: '300px',
+                width: '600px',
+                border: '2px dotted',
                 backgroundColor: isOver ? 'lightgray' : 'white',
+                flexDirection: 'column',
+                marginBottom: '10px'
             }}
         >
-            Drag and drop some files here (Maximum size: 4MB)
+            <div>
+                Drag and drop your UML sequence diagram here
+            </div>
+            <div>
+                <code>(Maximum size: 4MB)</code>
+            </div>
         </div>
     );
 }

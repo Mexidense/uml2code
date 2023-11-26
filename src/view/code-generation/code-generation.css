@@ -1,0 +1,15 @@
+.main-code-generation {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.main-code-generation-block {
+    display: flex;
+    justify-content: center;
+    margin: 0 10px;
+}
