@@ -4,7 +4,7 @@ import {Container} from "@mui/material";
 export default function Home() {
     return (
     <main>
-        <Container maxWidth="sm">
+        <Container maxWidth="md">
             <CodeGeneration/>
         </Container>
     </main>
