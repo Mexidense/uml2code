@@ -1,5 +1,8 @@
 "use client"
 import { DragEvent, useState } from 'react';
+import Grid from "@mui/system/Unstable_Grid";
+import {Box} from "@mui/material";
+import Spinner from "@uml2code/components/spinner/spinner";
 
 interface ImageFileUploaderProps {
     onCodeUpdate: (newCode: string) => void;
@@ -73,23 +76,23 @@ export function ImageFileUploader({ onCodeUpdate, setLoading }: ImageFileUploade
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
             style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                height: '300px',
-                width: '600px',
+                padding: '70px 0',
+                textAlign: 'center',
                 border: '2px dotted',
                 backgroundColor: isOver ? 'lightgray' : 'white',
-                flexDirection: 'column',
-                marginBottom: '10px'
+                borderRadius: '24px'
             }}
         >
-            <div>
-                Drag and drop your UML sequence diagram here
-            </div>
-            <div>
-                <code>(Maximum size: 4MB)</code>
-            </div>
+            <Box sx={{ width: '100%' }}>
+                <Grid container spacing={4}>
+                    <Grid xs={12} md={12}>
+                        Drag and drop your UML sequence diagram here 📥
+                    </Grid>
+                    <Grid xs={12} md={12}>
+                        <code>(Maximum size: 4MB)</code>
+                    </Grid>
+                </Grid>
+            </Box>
         </div>
     );
 }
