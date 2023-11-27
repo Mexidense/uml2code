@@ -10,7 +10,7 @@ export default function CodeGeneration() {
 
     return (
         <main>
-            <Box sx={{ width: '100%' }}>
+            <Box sx={{ width: '100%', padding: '0 10px' }}>
                 <Grid container spacing={2}>
                     <Grid xs={12} md={12}>
                         <Box sx={{ textAlign: 'center'}}>
