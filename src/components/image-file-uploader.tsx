@@ -1,5 +1,5 @@
 "use client"
-import { DragEvent, useState } from 'react';
+import {DragEvent, useRef, useState} from 'react';
 import Grid from "@mui/system/Unstable_Grid";
 import {Box} from "@mui/material";
 
@@ -9,6 +9,7 @@ interface ImageFileUploaderProps {
 }
 export function ImageFileUploader({ onCodeUpdate, setLoading }: ImageFileUploaderProps) {
     const [isOver, setIsOver] = useState(false);
+    const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
         event.preventDefault();
@@ -26,17 +27,41 @@ export function ImageFileUploader({ onCodeUpdate, setLoading }: ImageFileUploade
         setLoading(true);
 
         const droppedFiles = Array.from(event.dataTransfer.files);
+        const onlyOneFile = droppedFiles[0];
 
         try {
-            for (const file of droppedFiles) {
-                const codeGenerated = await processFile(file);
+            const codeGenerated = await processFile(onlyOneFile);
 
-                onCodeUpdate(codeGenerated.code);
-            }
+            onCodeUpdate(codeGenerated.code);
         } catch (error) {
             console.error('Error processing files:', error);
         } finally {
             setLoading(false);
+        }
+    };
+
+    const handleClick = () => {
+        if (fileInputRef.current) {
+            fileInputRef.current.click();
+        }
+    };
+    const handleFileInputChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const selectedFile = event.target.files?.[0];
+
+        if (selectedFile) {
+            event.preventDefault();
+            setIsOver(false);
+            setLoading(true);
+
+            try {
+                const codeGenerated = await processFile(selectedFile);
+
+                onCodeUpdate(codeGenerated.code);
+            } catch (error) {
+                console.error('Error processing files:', error);
+            } finally {
+                setLoading(false);
+            }
         }
     };
 
@@ -74,6 +99,7 @@ export function ImageFileUploader({ onCodeUpdate, setLoading }: ImageFileUploade
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
+            onClick={handleClick}
             style={{
                 padding: '70px 0',
                 textAlign: 'center',
@@ -85,6 +111,12 @@ export function ImageFileUploader({ onCodeUpdate, setLoading }: ImageFileUploade
         >
             <Box sx={{ width: '100%' }}>
                 <Grid container spacing={4}>
+                    <input
+                        type="file"
+                        ref={fileInputRef}
+                        style={{ display: 'none' }}
+                        onChange={handleFileInputChange}
+                    />
                     <Grid xs={12} md={12}>
                         Drag and drop your UML sequence diagram here 📥
                     </Grid>
