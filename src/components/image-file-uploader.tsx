@@ -78,8 +78,9 @@ export function ImageFileUploader({ onCodeUpdate, setLoading }: ImageFileUploade
                 padding: '70px 0',
                 textAlign: 'center',
                 border: '2px dotted',
-                backgroundColor: isOver ? 'lightgray' : 'white',
-                borderRadius: '24px'
+                backgroundColor: isOver ? 'yellow' : 'white',
+                borderRadius: '24px',
+                color: 'primary'
             }}
         >
             <Box sx={{ width: '100%' }}>
