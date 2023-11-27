@@ -5,9 +5,10 @@ import {Box} from "@mui/material";
 
 interface ImageFileUploaderProps {
     onCodeUpdate: (newCode: string) => void;
+    onImageSourceUpdate: (newCode: string) => void;
     setLoading: (value: boolean) => void;
 }
-export function ImageFileUploader({ onCodeUpdate, setLoading }: ImageFileUploaderProps) {
+export function ImageFileUploader({ onCodeUpdate, onImageSourceUpdate, setLoading }: ImageFileUploaderProps) {
     const [isOver, setIsOver] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -30,9 +31,7 @@ export function ImageFileUploader({ onCodeUpdate, setLoading }: ImageFileUploade
         const onlyOneFile = droppedFiles[0];
 
         try {
-            const codeGenerated = await processFile(onlyOneFile);
-
-            onCodeUpdate(codeGenerated.code);
+            await processFile(onlyOneFile);
         } catch (error) {
             console.error('Error processing files:', error);
         } finally {
@@ -45,6 +44,7 @@ export function ImageFileUploader({ onCodeUpdate, setLoading }: ImageFileUploade
             fileInputRef.current.click();
         }
     };
+
     const handleFileInputChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = event.target.files?.[0];
 
@@ -54,9 +54,7 @@ export function ImageFileUploader({ onCodeUpdate, setLoading }: ImageFileUploade
             setLoading(true);
 
             try {
-                const codeGenerated = await processFile(selectedFile);
-
-                onCodeUpdate(codeGenerated.code);
+                await processFile(selectedFile);
             } catch (error) {
                 console.error('Error processing files:', error);
             } finally {
@@ -66,21 +64,27 @@ export function ImageFileUploader({ onCodeUpdate, setLoading }: ImageFileUploade
     };
 
     const processFile = async (file: File) => {
-        return new Promise<{ code: string }>((resolve, reject) => {
+        return new Promise<void>((resolve, reject) => {
             const reader = new FileReader();
 
             reader.onloadend = async () => {
                 try {
+                    const file = reader.result as string;
                     const response = await fetch('api/image-uploader', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(reader.result),
+                        body: JSON.stringify(file),
                     });
 
-                    const codeGenerated = (await response.json()) as { code: string };
-                    resolve(codeGenerated);
+                    const result = await response.json();
+                    const codeGenerated = { code: result.code };
+
+                    onCodeUpdate(codeGenerated.code);
+                    onImageSourceUpdate(file);
+
+                    resolve();
                 } catch (error) {
                     reject(error);
                 }

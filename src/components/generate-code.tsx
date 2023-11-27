@@ -12,17 +12,27 @@ interface GenerateCodeProps {
 
 export function GenerateCode({ setLoading, loading }: GenerateCodeProps) {
     const [generatedCode, setGeneratedCode] = useState('');
+    const [uploadedImage, setUploadedImage] = useState<string|null>(null);
+
     const handleCodeUpdate = (newCode: string) => {
         setGeneratedCode(newCode);
+    };
+    const handleImageUpdate = (imageSource: string) => {
+        setUploadedImage(imageSource);
     };
 
     return (
         <>
             {
-                !loading && <Box sx={{ width: '100%' }}>
+                !loading && <Box sx={{ width: '100%', alignItems: 'center'}}>
                     <Grid container spacing={2}>
-                        <Grid xs={12} md={12}>
-                            <ImageFileUploader onCodeUpdate={handleCodeUpdate} setLoading={setLoading} />
+                        <Grid xs={12} md={12} style={{ textAlign: 'center' }}>
+                            {!uploadedImage && (
+                                <ImageFileUploader onCodeUpdate={handleCodeUpdate} setLoading={setLoading} onImageSourceUpdate={handleImageUpdate}/>
+                            )}
+                            {uploadedImage && (
+                                <img src={uploadedImage} alt="Image uploaded" width="100%"/>
+                            )}
                         </Grid>
                         <Grid xs={12} md={12}>
                             <CodeBlockViewer generatedCode={generatedCode} />
