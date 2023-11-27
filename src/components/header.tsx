@@ -5,24 +5,31 @@ import {
     Divider, Drawer, IconButton,
     List,
     ListItem,
-    ListItemButton,
+    ListItemButton, ListItemIcon,
     ListItemText, Toolbar,
     Typography
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-
+import GitHubIcon from '@mui/icons-material/GitHub';
 import React from "react";
 
 interface Props {
-    /**
-     * Injected by the documentation to work in an iframe.
-     * You won't need it on your project.
-     */
     window?: () => Window;
 }
 
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Contact'];
+type Pages = {
+    label: string;
+    url: string;
+    icon: JSX.Element
+}
+const navItems: Pages[] = [
+    {
+        label: 'About me',
+        url: 'https://github.com/Mexidense',
+        icon: <GitHubIcon/>
+    }
+]
 
 export default function Header(props: Props) {
     const { window } = props;
@@ -40,9 +47,12 @@ export default function Header(props: Props) {
             <Divider />
             <List>
                 {navItems.map((item) => (
-                    <ListItem key={item} disablePadding>
-                        <ListItemButton sx={{ textAlign: 'center' }}>
-                            <ListItemText primary={item} />
+                    <ListItem key={item.label}>
+                        <ListItemButton sx={{ textAlign: 'center' }} href={item.url} target="_blank">
+                            <ListItemIcon>
+                                {item.icon}
+                            </ListItemIcon>
+                            <ListItemText primary={item.label} />
                         </ListItemButton>
                     </ListItem>
                 ))}
@@ -75,8 +85,8 @@ export default function Header(props: Props) {
                     </Typography>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         {navItems.map((item) => (
-                            <Button key={item} sx={{ color: '#fff' }}>
-                                {item}
+                            <Button key={item.label} sx={{ color: '#fff' }} href={item.url} target="_blank" endIcon={item.icon}>
+                                {item.label}
                             </Button>
                         ))}
                     </Box>
