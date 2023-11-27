@@ -9,22 +9,24 @@ export default function CodeGeneration() {
     const [loading, setLoading] = useState(false);
 
     return (
-        <Box sx={{ width: '100%' }}>
-            <Grid container spacing={2}>
-                <Grid xs={12} md={12}>
-                    <Box sx={{ textAlign: 'center'}}>
-                        <Typography align="center" variant="h1" color="primary">
-                            UML2Code
-                        </Typography>
-                    </Box>
+        <main>
+            <Box sx={{ width: '100%' }}>
+                <Grid container spacing={2}>
+                    <Grid xs={12} md={12}>
+                        <Box sx={{ textAlign: 'center'}}>
+                            <Typography align="center" variant="h1" color="primary">
+                                UML2Code
+                            </Typography>
+                        </Box>
+                    </Grid>
+                    <Grid xs={12} md={12}>
+                        {loading && <Spinner />}
+                    </Grid>
+                    <Grid xs={12} md={12}>
+                        <GenerateCode setLoading={setLoading} loading={loading} />
+                    </Grid>
                 </Grid>
-                <Grid xs={12} md={12}>
-                    {loading && <Spinner />}
-                </Grid>
-                <Grid xs={12} md={12}>
-                    <GenerateCode setLoading={setLoading} loading={loading} />
-                </Grid>
-            </Grid>
-        </Box>
+            </Box>
+        </main>
     )
 }
