@@ -4,7 +4,6 @@ import Spinner from "@uml2code/components/spinner/spinner";
 import {GenerateCode} from "@uml2code/components/generate-code";
 import Grid from "@mui/system/Unstable_Grid";
 import {Box} from "@mui/material";
-import {width} from "@mui/system";
 
 export default function CodeGeneration() {
     const [loading, setLoading] = useState(false);

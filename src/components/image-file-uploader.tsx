@@ -2,7 +2,6 @@
 import { DragEvent, useState } from 'react';
 import Grid from "@mui/system/Unstable_Grid";
 import {Box} from "@mui/material";
-import Spinner from "@uml2code/components/spinner/spinner";
 
 interface ImageFileUploaderProps {
     onCodeUpdate: (newCode: string) => void;
