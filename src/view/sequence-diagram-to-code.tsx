@@ -1,9 +1,11 @@
 "use client"
 import {useState} from "react";
 import Grid from "@mui/system/Unstable_Grid";
-import {Box, Typography} from "@mui/material";
+import {Accordion, AccordionDetails, AccordionSummary, Box, Typography, useTheme} from "@mui/material";
 import {CodeBlockViewer} from "@uml2code/components/code-block-viewer";
 import FormStepper from "@uml2code/components/form-stepper";
+import Summary from "@uml2code/components/summary";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 export type PromptInfo = {
     imageSource: string;
@@ -14,8 +16,10 @@ export type PromptInfo = {
 };
 
 export default function SequenceDiagramToCode() {
-    const [generatedCode, setGeneratedCode] = useState<string|null>(null);
+    const [generatedCode, setGeneratedCode] = useState<string|null>('asdsd');
     const [prompt, setPrompt] = useState<PromptInfo|null>(null);
+
+    const theme = useTheme();
 
     return (
         <main>
@@ -32,7 +36,38 @@ export default function SequenceDiagramToCode() {
                         {!generatedCode ? (
                             <FormStepper setGeneratedCode={setGeneratedCode} setPrompt={setPrompt} />
                         ) : (
-                            <CodeBlockViewer generatedCode={generatedCode} />
+                            <>
+                                <Accordion
+                                    sx={{ backgroundColor: theme.palette.secondary.main }}
+                                    defaultExpanded={false}
+                                >
+                                    <AccordionSummary
+                                        expandIcon={<ExpandMoreIcon />}
+                                        aria-controls="summary-content"
+                                        id="summary-header"
+                                    >
+                                        <Typography>Summary 📝</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <Summary/>
+                                    </AccordionDetails>
+                                </Accordion>
+                                <Accordion
+                                    sx={{ backgroundColor: theme.palette.secondary.main }}
+                                    defaultExpanded={true}
+                                >
+                                    <AccordionSummary
+                                        expandIcon={<ExpandMoreIcon />}
+                                        aria-controls="code-content"
+                                        id="code-header"
+                                    >
+                                        <Typography>Beautiful code 💅</Typography>
+                                    </AccordionSummary>
+                                    <AccordionDetails>
+                                        <CodeBlockViewer generatedCode={generatedCode} />
+                                    </AccordionDetails>
+                                </Accordion>
+                            </>
                         )}
                     </Grid>
                 </Grid>
