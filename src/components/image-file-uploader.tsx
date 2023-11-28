@@ -4,11 +4,10 @@ import Grid from "@mui/system/Unstable_Grid";
 import {Box, useTheme} from "@mui/material";
 
 interface ImageFileUploaderProps {
-    onCodeUpdate: (newCode: string) => void;
-    onImageSourceUpdate: (newCode: string) => void;
-    setLoading: (value: boolean) => void;
+    setUploadedImage: (imageSource: string) => void;
 }
-export function ImageFileUploader({ onCodeUpdate, onImageSourceUpdate, setLoading }: ImageFileUploaderProps) {
+
+export function ImageFileUploader({ setUploadedImage }: ImageFileUploaderProps) {
     const [isOver, setIsOver] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
@@ -26,7 +25,7 @@ export function ImageFileUploader({ onCodeUpdate, onImageSourceUpdate, setLoadin
     const handleDrop = async (event: DragEvent<HTMLDivElement>) => {
         event.preventDefault();
         setIsOver(false);
-        setLoading(true);
+        // setLoading(true);
 
         const droppedFiles = Array.from(event.dataTransfer.files);
         const onlyOneFile = droppedFiles[0];
@@ -36,7 +35,7 @@ export function ImageFileUploader({ onCodeUpdate, onImageSourceUpdate, setLoadin
         } catch (error) {
             console.error('Error processing files:', error);
         } finally {
-            setLoading(false);
+            // setLoading(false);
         }
     };
 
@@ -52,14 +51,14 @@ export function ImageFileUploader({ onCodeUpdate, onImageSourceUpdate, setLoadin
         if (selectedFile) {
             event.preventDefault();
             setIsOver(false);
-            setLoading(true);
+            // setLoading(true);
 
             try {
                 await processFile(selectedFile);
             } catch (error) {
                 console.error('Error processing files:', error);
             } finally {
-                setLoading(false);
+                // setLoading(false);
             }
         }
     };
@@ -71,19 +70,7 @@ export function ImageFileUploader({ onCodeUpdate, onImageSourceUpdate, setLoadin
             reader.onloadend = async () => {
                 try {
                     const file = reader.result as string;
-                    const response = await fetch('api/image-uploader', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify(file),
-                    });
-
-                    const result = await response.json();
-                    const codeGenerated = { code: result.code };
-
-                    onCodeUpdate(codeGenerated.code);
-                    onImageSourceUpdate(file);
+                    setUploadedImage(file);
 
                     resolve();
                 } catch (error) {
