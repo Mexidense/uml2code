@@ -4,12 +4,12 @@ import {ImageFileUploader} from "@uml2code/components/image-file-uploader";
 import Grid from "@mui/system/Unstable_Grid";
 import {Box, Card, CardActionArea, CardMedia} from "@mui/material";
 
-interface GenerateCodeProps {
+interface ImageFormStepProps {
     setLoading: (value: boolean) => void;
     setGeneratedCode: (value: string) => void;
 }
 
-export function Form({ setLoading, setGeneratedCode }: GenerateCodeProps) {
+export function ImageFormStep({ setLoading, setGeneratedCode }: ImageFormStepProps) {
     const [uploadedImage, setUploadedImage] = useState<string|null>(null);
 
     const handleCodeUpdate = (newCode: string) => {
