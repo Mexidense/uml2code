@@ -2,8 +2,8 @@
 import { Inter } from 'next/font/google'
 import {getTheme} from "@uml2code/app/theme";
 import {Box, Container, CssBaseline, ThemeProvider} from "@mui/material";
-import Header from "@uml2code/components/header";
-import {StickyFooter} from "@uml2code/components/sticky-footer";
+import Header from "@uml2code/view/header";
+import {StickyFooter} from "@uml2code/view/sticky-footer";
 
 const inter = Inter({ subsets: ['latin'] })
 
