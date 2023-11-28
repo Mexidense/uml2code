@@ -1,4 +1,4 @@
-import {AppBar, Box, Toolbar, Typography} from "@mui/material";
+import {AppBar, Box, Link, Toolbar, Typography} from "@mui/material";
 
 export function StickyFooter() {
     return (
@@ -12,7 +12,7 @@ export function StickyFooter() {
             <AppBar position="fixed" style={{ top: 'auto', bottom: 0, alignItems: 'flex-end'}} color="primary">
                 <Toolbar>
                     <Typography variant="subtitle2" color="secondary">
-                        <code>Made with ❤️ by Salvador Briones</code>
+                        <code>Made with ❤️ by <Link href="https://www.linkedin.com/in/sbrionesr/" color="secondary" target="_blank" underline="hover">Salvador Briones</Link></code>
                     </Typography>
                 </Toolbar>
             </AppBar>

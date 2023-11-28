@@ -1,7 +1,7 @@
 "use client"
 import { Inter } from 'next/font/google'
 import {getTheme} from "@uml2code/app/theme";
-import {Box, CssBaseline, ThemeProvider} from "@mui/material";
+import {Box, Container, CssBaseline, ThemeProvider} from "@mui/material";
 import Header from "@uml2code/components/header";
 import {StickyFooter} from "@uml2code/components/sticky-footer";
 
@@ -17,13 +17,15 @@ export default function RootLayout({
         <CssBaseline />
         <html lang="en">
             <body className={inter.className}>
-            <Header />
-            <Box sx={{ marginTop: 10 }}>
-                <div className={inter.className}>
-                    {children}
-                </div>
-            </Box>
-            <StickyFooter />
+                <Container>
+                    <Header />
+                    <Box sx={{ marginTop: 10 }}>
+                        <div className={inter.className}>
+                            {children}
+                        </div>
+                    </Box>
+                    <StickyFooter />
+                </Container>
             </body>
         </html>
       </ThemeProvider>

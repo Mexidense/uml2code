@@ -1,7 +1,7 @@
 "use client"
-import {DragEvent, useRef, useState} from 'react';
+import {CSSProperties, DragEvent, useRef, useState} from 'react';
 import Grid from "@mui/system/Unstable_Grid";
-import {Box} from "@mui/material";
+import {Box, useTheme} from "@mui/material";
 
 interface ImageFileUploaderProps {
     onCodeUpdate: (newCode: string) => void;
@@ -10,6 +10,7 @@ interface ImageFileUploaderProps {
 }
 export function ImageFileUploader({ onCodeUpdate, onImageSourceUpdate, setLoading }: ImageFileUploaderProps) {
     const [isOver, setIsOver] = useState(false);
+    const [isHovered, setIsHovered] = useState(false);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const handleDragOver = (event: DragEvent<HTMLDivElement>) => {
@@ -98,19 +99,32 @@ export function ImageFileUploader({ onCodeUpdate, onImageSourceUpdate, setLoadin
         });
     };
 
+    const containerStyle: CSSProperties = {
+        padding: '70px 0',
+        textAlign: 'center',
+        border: '2px dotted',
+        borderRadius: '24px',
+        color: 'primary',
+        transition: 'background-color 0.3s',
+    };
+
+    const theme = useTheme();
+    const hoverStyle: CSSProperties = {
+        backgroundColor: theme.palette.secondary.main,
+        cursor: 'pointer'
+    };
+
     return (
-        <div
+        <Box
             onDragOver={handleDragOver}
             onDragLeave={handleDragLeave}
             onDrop={handleDrop}
             onClick={handleClick}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             style={{
-                padding: '70px 0',
-                textAlign: 'center',
-                border: '2px dotted',
-                backgroundColor: isOver ? 'yellow' : 'white',
-                borderRadius: '24px',
-                color: 'primary'
+                ...containerStyle,
+                ...(isOver || isHovered ? hoverStyle : {}),
             }}
         >
             <Box sx={{ width: '100%' }}>
@@ -129,6 +143,6 @@ export function ImageFileUploader({ onCodeUpdate, onImageSourceUpdate, setLoadin
                     </Grid>
                 </Grid>
             </Box>
-        </div>
+        </Box>
     );
 }

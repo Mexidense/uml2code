@@ -1,15 +1,18 @@
 "use client"
 import {useState} from "react";
 import Spinner from "@uml2code/components/spinner";
-import {GenerateCode} from "@uml2code/components/generate-code";
+import {Form} from "@uml2code/components/form";
 import Grid from "@mui/system/Unstable_Grid";
 import {Box, Typography} from "@mui/material";
+import {CodeBlockViewer} from "@uml2code/components/code-block-viewer";
 
 export default function CodeGeneration() {
     const [loading, setLoading] = useState(false);
+    const [generatedCode, setGeneratedCode] = useState('');
+
 
     return (
-        <main>
+        <main style={ loading ? { cursor: 'progress' } : {}}>
             <Box sx={{ width: '100%', padding: '0 10px' }}>
                 <Grid container spacing={2}>
                     <Grid xs={12} md={12}>
@@ -20,10 +23,20 @@ export default function CodeGeneration() {
                         </Box>
                     </Grid>
                     <Grid xs={12} md={12}>
-                        {loading && <Spinner />}
+                        {
+                            loading &&
+                            <Spinner />
+                        }
                     </Grid>
                     <Grid xs={12} md={12}>
-                        <GenerateCode setLoading={setLoading} loading={loading} />
+                        {
+                            !generatedCode && !loading &&
+                            <Form setLoading={setLoading} loading={loading} setGeneratedCode={setGeneratedCode} />
+                        }
+                        {
+                            generatedCode &&
+                            <CodeBlockViewer generatedCode={generatedCode} />
+                        }
                     </Grid>
                 </Grid>
             </Box>
