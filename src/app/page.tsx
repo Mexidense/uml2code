@@ -1,4 +1,4 @@
-import CodeGeneration from "@uml2code/view/code-generation/code-generation";
+import SequenceDiagramToCode from "@uml2code/view/sequence-diagram-to-code";
 import {Metadata} from "next";
 
 export const metadata: Metadata = {
@@ -11,6 +11,6 @@ export const metadata: Metadata = {
 
 export default function Home() {
     return (
-        <CodeGeneration />
+        <SequenceDiagramToCode />
     )
 }

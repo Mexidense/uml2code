@@ -1,4 +1,3 @@
-import * as fs from 'fs';
 import {VisionHttpClient} from "@uml2code/back-end/generate-code/open-ai/vision.http-client";
 
 export class GenerateCodeFromSequenceDiagram {
@@ -6,9 +5,9 @@ export class GenerateCodeFromSequenceDiagram {
     image: string,
   ): Promise<string|null> {
     const programmingLanguage = 'typescript';
+    const framework = 'NextJS';
     const architectures = ['Domain Driven-Design', 'Hexagonal'];
     const shouldHasTests = true;
-    const framework = 'NextJS';
 
     const whoAreYouInstruction = `You are the best architecture software engineer who has knowledge in ${architectures.join(
         ',',
@@ -21,11 +20,11 @@ export class GenerateCodeFromSequenceDiagram {
     const outputInstruction = `Do not explain anything just generate all within ONLY one ${programmingLanguage} code block in Markdown format.\n`;
 
     let prompt = `${whoAreYouInstruction}${visionInstruction}${mainInstruction}${outputInstruction}`;
+    if (framework) {
+      prompt += `Also, follows the rules of this framework: ${framework}.\n`;
+    }
     if (shouldHasTests) {
       prompt += `Also, include test.\n`;
-    }
-    if (framework) {
-      prompt += `Also, follows the rules of this framework: ${framework}.`;
     }
 
     console.table(`🧪 ${prompt}`);
