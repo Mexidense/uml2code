@@ -60,7 +60,7 @@ const FANNY_FACTS: string[] = [
 const showDifferentTipEachXSeconds = 5;
 
 export default function Spinner() {
-    const [tipIndex, setTipIndex] = useState<number>(41);
+    const [tipIndex, setTipIndex] = useState<number>(Math.floor(Math.random() * FANNY_FACTS.length) ?? 41);
 
     useEffect(() => {
         const interval = setInterval(() => {
