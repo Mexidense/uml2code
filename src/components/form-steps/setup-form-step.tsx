@@ -70,6 +70,7 @@ export default function SetupFormStep({ isGeneratingCode, programmingLanguage, f
                                 value={programmingLanguage}
                                 onChange={(_event: React.SyntheticEvent<Element, Event>, newValue: string | null) => {
                                     setProgrammingLanguage(newValue);
+                                    setFramework(null)
                                 }}
                             />
                         </Grid>
