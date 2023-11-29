@@ -31,7 +31,7 @@ export default function Result({ generatedCode, promptText, prompt }: ResultProp
                     aria-controls="code-content"
                     id="code-header"
                 >
-                    <Typography>Your beautiful generated code 💅</Typography>
+                    <Typography variant="subtitle1" color={theme.palette.primary.main}>Your beautiful generated code 💅</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <CodeBlockViewer generatedCode={generatedCode} />
@@ -48,7 +48,7 @@ export default function Result({ generatedCode, promptText, prompt }: ResultProp
                     aria-controls="code-content"
                     id="code-header"
                 >
-                    <Typography>Your request 🙋</Typography>
+                    <Typography variant="subtitle1" color={theme.palette.primary.main}>Your request 🙋</Typography>
                 </AccordionSummary>
                 <AccordionDetails>
                     <Summary image={prompt.imageSource} promptText={promptText} prompt={prompt}/>

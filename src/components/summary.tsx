@@ -128,18 +128,13 @@ export default function Summary({ image, promptText, prompt }: SummaryProps) {
                         </CardActions>
                         <Collapse in={expandedDetails} timeout="auto" unmountOnExit>
                             <CardContent>
-                                <Typography paragraph>Prompt:</Typography>
-                                <Typography paragraph>
+                                <Typography paragraph variant="subtitle2">Prompt</Typography>
+                                <Typography paragraph variant="body2" color={theme.palette.primary.main}>
                                     {promptText}
                                 </Typography>
                             </CardContent>
                         </Collapse>
                     </Card>
-                </Box>
-            </Grid>
-            <Grid item xs={12} md={6}>
-                <Box sx={ boxStyle } >
-
                 </Box>
             </Grid>
         </Grid>
