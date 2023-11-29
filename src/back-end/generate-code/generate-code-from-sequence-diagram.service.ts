@@ -21,9 +21,10 @@ export class GenerateCodeFromSequenceDiagram {
     const visionInstruction =
         'I provide you with a sequence diagram in PNG/JPG file format.\n';
     const mainInstruction = `You should provide a ${request.programmingLanguage} example with all code generated watching this sequence diagram and, using ${request.architecture} architecture taking into account all their principles.\n`;
-    const outputInstruction = `Do not explain anything just generate all within ONLY one ${request.programmingLanguage} code block in Markdown format.\n`;
+    const outputInstruction = `Do not explain anything just generate all within ONLY one ${request.programmingLanguage} code block.\n`;
+    const outputFormat = `All within a block like this: "\`\`\`${request.programmingLanguage.toLowerCase()}<CODE_HERE>\`\`\`" in Markdown format.\n`;
 
-    let prompt = `${whoAreYouInstruction}${visionInstruction}${mainInstruction}${outputInstruction}`;
+    let prompt = `${whoAreYouInstruction}${visionInstruction}${mainInstruction}${outputInstruction}${outputFormat}`;
     if (request.framework) {
       prompt += `Also, follows the rules of this framework: ${request.framework}.\n`;
     }
