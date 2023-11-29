@@ -14,7 +14,7 @@ interface ImageFormStepProps {
 export function ImageFormStep({ setUploadedImage, imageSource }: ImageFormStepProps) {
     const [image, setImage] = useState<string|null>(imageSource);
 
-    const handleImageUpdate = (imageSource: string) => {
+    const handleImageUpdate = (imageSource: string|null) => {
         setUploadedImage(imageSource);
         setImage(imageSource);
     };
@@ -23,7 +23,6 @@ export function ImageFormStep({ setUploadedImage, imageSource }: ImageFormStepPr
         setUploadedImage(null)
         setImage(null);
     }
-
 
     return (
         <>
