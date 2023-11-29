@@ -13,7 +13,7 @@ type ProgramingLanguagesType = {
 
 const PROGRAMING_LANGUAGES_LIST: readonly ProgramingLanguagesType[] = [
     { value: 'Typescript', frameworks: ['React', 'VueJS', 'Angular', 'NestJS', 'NextJS', 'Express']},
-    { value: 'PHP', frameworks: ['Laravel', 'Symfony', 'CodeIgniter', 'Yii', 'Phalcon', 'CakePHP', 'Slim', 'Laminas', 'FuelPHP', 'Flight'] },
+    { value: 'PHP', frameworks: ['Laravel', 'Symfony', 'CodeIgniter', 'Yii', 'CakePHP', 'Slim', 'Laminas', 'FuelPHP', 'Flight'] },
     { value: 'Golang', frameworks: ['Gin', 'Echo', 'Beego', 'Revel', 'Fiber', 'Buffalo', 'Gorilla', 'Gorm', 'Iris', 'Goji'] },
     { value: 'Java', frameworks: ['Spring Framework', 'Apache Struts', 'Apache Wicket', 'Play', 'Vaadin', 'Grails', 'Dropwizard', 'Vert.x'] },
     { value: 'Ruby', frameworks: ['Ruby on Rails', 'Sinatra', 'Hanami', 'Padrino', 'Cuba', 'Merb', 'Grape', 'Camping', 'Ramaze', 'Nancy'] },

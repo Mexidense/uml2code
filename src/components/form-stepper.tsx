@@ -35,7 +35,7 @@ export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt
     const [activeStep, setActiveStep] = React.useState(0);
     const [skipped, setSkipped] = React.useState(new Set<number>());
 
-    const [isGeneratingCode, setIsGeneratingCode] = React.useState<boolean>(false);
+    const [isGeneratingCode, setIsGeneratingCode] = React.useState<boolean>(true);
 
     const isStepOptional = (step: number) => {
         return step === NUMBER_OF_STEPS + 1;

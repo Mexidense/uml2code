@@ -1,7 +1,7 @@
 "use client"
 import {ChangeEvent, CSSProperties, DragEvent, SyntheticEvent, useRef, useState} from 'react';
 import Grid from "@mui/system/Unstable_Grid";
-import {Alert, Box, Snackbar, Stack, useTheme} from "@mui/material";
+import {Alert, Box, Snackbar, Stack, Typography, useTheme} from "@mui/material";
 import * as React from "react";
 
 interface ImageFileUploaderProps {
@@ -114,16 +114,16 @@ export function ImageFileUploader({ setUploadedImage }: ImageFileUploaderProps) 
         });
     };
 
+    const theme = useTheme();
     const containerStyle: CSSProperties = {
         padding: '70px 0',
         textAlign: 'center',
         border: '2px dotted',
         borderRadius: '24px',
-        color: 'primary',
+        color: theme.palette.primary.main,
         transition: 'background-color 0.3s',
     };
 
-    const theme = useTheme();
     const hoverStyle: CSSProperties = {
         backgroundColor: theme.palette.secondary.main,
         cursor: 'pointer'
@@ -149,7 +149,7 @@ export function ImageFileUploader({ setUploadedImage }: ImageFileUploaderProps) 
                 }}
             >
                 <Box sx={{ width: '100%' }}>
-                    <Grid container spacing={4}>
+                    <Grid container spacing={4} color={theme.palette.primary.main}>
                         <input
                             type="file"
                             accept="image/png, image/jpeg"
@@ -158,10 +158,14 @@ export function ImageFileUploader({ setUploadedImage }: ImageFileUploaderProps) 
                             onChange={handleFileInputChange}
                         />
                         <Grid xs={12} md={12}>
-                            Drag and drop your UML sequence diagram here 📥
+                            <Typography variant="h6">
+                                Drag and drop your UML sequence diagram image here 📥
+                            </Typography>
                         </Grid>
                         <Grid xs={12} md={12}>
-                            <code>(PNG/JPG image file. Maximum size: 4MB)</code>
+                            <Typography variant="caption">
+                                <code>(Maximum size: 4MB)</code>
+                            </Typography>
                         </Grid>
                     </Grid>
                 </Box>

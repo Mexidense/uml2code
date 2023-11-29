@@ -57,7 +57,7 @@ const FANNY_FACTS: string[] = [
     "When asked about their favorite dessert, OpenAI models replied, \"Cookies, but only if they\'re made of code.\"",
 ];
 
-const showDifferentTipEachXSeconds = 3;
+const showDifferentTipEachXSeconds = 5;
 
 export default function Spinner() {
     const [tipIndex, setTipIndex] = useState<number>(41);
@@ -86,12 +86,12 @@ export default function Spinner() {
                 </Grid>
             </Grid>
             <Grid container mt={2}>
-                <Grid xs={12} md={3}>
+                <Grid xs={12} md={12} sx={{ textAlign: 'center'}}>
                     <Typography color={theme.palette.primary.main} variant="subtitle1">
                         <QuizIcon/> Did you know...?
                     </Typography>
                 </Grid>
-                <Grid xs={12} md={9} sx={{ textAlign: 'right'}}>
+                <Grid xs={12} md={12} sx={{ textAlign: 'center'}}>
                     <Typography color={theme.palette.primary.main} variant="subtitle1">
                         ...{FANNY_FACTS.at(tipIndex) ?? ''} <EmojiEmotionsIcon />
                     </Typography>

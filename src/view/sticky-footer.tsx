@@ -6,7 +6,7 @@ export function StickyFooter() {
             sx={{
                 display: 'flex',
                 flexDirection: 'column',
-                minHeight: '30vh'
+                minHeight: '10vh'
             }}
         >
             <AppBar position="fixed" style={{ top: 'auto', bottom: 0, alignItems: 'flex-end'}} color="primary">
