@@ -1,20 +1,28 @@
+import csrf from 'edge-csrf';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-export const AUTHORIZATION_HEADER_KEY = 'x-uml-authorization-key'
+const csrfProtect = csrf({
+    cookie: {
+        secure: process.env.NODE_ENV === 'production',
+    },
+});
 
 export async function middleware(request: NextRequest) {
-    const token = process.env.AUTHORIZATION_TOKEN;
-    if (!token) {
-        throw new Error('Please, set Auth token var');
+    const response = NextResponse.next();
+
+    // csrf protection
+    const csrfError = await csrfProtect(request, response);
+
+    // check result
+    if (csrfError) {
+        return new NextResponse(`Invalid csrf token: ${csrfError.message}`, { status: 403 });
     }
 
-    const response = NextResponse.next();
-    response.headers.set(AUTHORIZATION_HEADER_KEY, token);
+    // return token (for use in static-optimized-example)
+    if (request.nextUrl.pathname === '/csrf-token') {
+        return NextResponse.json({ csrfToken: response.headers.get('X-CSRF-Token') || 'missing' });
+    }
 
     return response;
-}
-
-export const config = {
-    matcher: '/api/image-uploader',
 }

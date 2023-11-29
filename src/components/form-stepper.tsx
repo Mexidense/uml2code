@@ -23,7 +23,7 @@ interface ImageFormStepProps {
 }
 
 export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt }: ImageFormStepProps) {
-    const numberOfSteps = 2;
+    const NUMBER_OF_STEPS = 2;
 
     const [uploadedImage, setUploadedImage] = useState<string|null>(null);
     const [programmingLanguage, setProgrammingLanguage] = React.useState<string | null>(null);
@@ -37,7 +37,7 @@ export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt
     const [isGeneratingCode, setIsGeneratingCode] = React.useState<boolean>(false);
 
     const isStepOptional = (step: number) => {
-        return step === numberOfSteps + 1;
+        return step === NUMBER_OF_STEPS + 1;
     };
 
     const isStepSkipped = (step: number) => {
@@ -55,7 +55,7 @@ export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt
     }
 
     const isFinalStep = (): boolean => {
-        return activeStep === numberOfSteps - 1
+        return activeStep === NUMBER_OF_STEPS - 1
     }
 
     const isStepValid = (): boolean => {
@@ -115,20 +115,28 @@ export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt
     };
 
     const generateCode = async () => {
+        const csrfResp = await fetch('/csrf-token');
+        const { csrfToken } = await csrfResp.json();
+
         try {
-            const payload = JSON.stringify({
+            const payload = {
                 image: uploadedImage,
                 programmingLanguage: programmingLanguage,
                 framework: framework,
                 architecture: architecture,
                 shouldHasTests: wantTest
-            } as GenerateCodeFromSequenceDiagramRequest);
+            } as GenerateCodeFromSequenceDiagramRequest;
             const response = await fetch('api/image-uploader', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'X-CSRF-Token': csrfToken
                 },
-                body: payload,
+                body: JSON.stringify(
+                    {
+                        ...payload
+                    }
+                ),
             });
 
             const result = await response.json() as GenerateCodeFromSequenceDiagramResponse;
@@ -207,7 +215,7 @@ export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt
                             </Button>
                         )}
                         <Button onClick={handleNext} disabled={!isStepValid()}>
-                            {activeStep === numberOfSteps - 1 ? 'Generate code' : 'Next'}
+                            {activeStep === NUMBER_OF_STEPS - 1 ? 'Generate code' : 'Next'}
                         </Button>
                     </Box>
             }

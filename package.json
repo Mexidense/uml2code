@@ -16,6 +16,7 @@
     "@mui/material": "^5.14.18",
     "@mui/styled-engine-sc": "^6.0.0-alpha.6",
     "@uiw/react-markdown-preview": "^5.0.2",
+    "edge-csrf": "^1.0.6",
     "next": "14.0.3",
     "openai": "^4.20.0",
     "react": "^18",
