@@ -1,11 +1,8 @@
 "use client"
 import {useState} from "react";
 import Grid from "@mui/system/Unstable_Grid";
-import {Accordion, AccordionDetails, AccordionSummary, Box, Typography, useTheme} from "@mui/material";
-import {CodeBlockViewer} from "@uml2code/components/code-block-viewer";
+import {Box, Typography} from "@mui/material";
 import FormStepper from "@uml2code/components/form-stepper";
-import Summary from "@uml2code/components/summary";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import Result from "@uml2code/components/result";
 
 export type PromptInfo = {
