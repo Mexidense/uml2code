@@ -76,6 +76,9 @@ export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt
             newSkipped.delete(activeStep);
         }
 
+        setActiveStep((prevActiveStep) => prevActiveStep + 1);
+        setSkipped(newSkipped);
+
         if (isFinalStep()) {
             setIsGeneratingCode(true);
 
@@ -91,9 +94,6 @@ export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt
 
             return;
         }
-
-        setActiveStep((prevActiveStep) => prevActiveStep + 1);
-        setSkipped(newSkipped);
     };
 
     const handleBack = () => {
@@ -151,18 +151,22 @@ export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt
 
     return (
         <Box sx={{ width: '100%', cursor: isGeneratingCode ? 'progress' : 'default'}}>
-            <>
-                <Stepper activeStep={activeStep} sx={{ margin: '20px 0' }}>
-                    <Step key="image">
-                        <StepLabel>Upload image</StepLabel>
-                    </Step>
-                    <Step key="framework">
-                        <StepLabel>
-                            Setup your code
-                        </StepLabel>
-                    </Step>
-                </Stepper>
-            </>
+            {
+                !isGeneratingCode && (
+                    <>
+                        <Stepper activeStep={activeStep} sx={{ margin: '20px 0' }}>
+                            <Step key="image">
+                                <StepLabel>Upload image</StepLabel>
+                            </Step>
+                            <Step key="framework">
+                                <StepLabel>
+                                    Setup your code
+                                </StepLabel>
+                            </Step>
+                        </Stepper>
+                    </>
+                )
+            }
             {
                 activeStep === 0 && (
                     <>
