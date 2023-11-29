@@ -15,6 +15,7 @@ import {
     GenerateCodeFromSequenceDiagramRequest,
     GenerateCodeFromSequenceDiagramResponse
 } from "@uml2code/back-end/generate-code/generate-code-from-sequence-diagram.service";
+import {useTheme} from "@mui/material";
 
 interface ImageFormStepProps {
     setGeneratedCode: (value: string) => void;
@@ -149,6 +150,8 @@ export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt
         }
     };
 
+    const theme = useTheme();
+
     return (
         <Box sx={{ width: '100%', cursor: isGeneratingCode ? 'progress' : 'default'}}>
             {
@@ -173,7 +176,11 @@ export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt
                         <Box sx={{ width: '100%', alignItems: 'center'}}>
                             <Grid container spacing={2}>
                                 <Grid xs={12} md={12} style={{ textAlign: 'center', alignItems: 'center' }}>
-                                    <Typography sx={{ mt: 2, mb: 1, textAlign: 'left' }} variant="subtitle1">
+                                    <Typography
+                                        color={theme.palette.primary.main}
+                                        sx={{ mt: 2, mb: 1, ml: 1, textAlign: 'left' }}
+                                        variant="subtitle1"
+                                    >
                                         Please, leave your fantastic UML sequence diagram here ⬇️
                                     </Typography>
                                     <ImageFormStep setUploadedImage={setUploadedImage} imageSource={uploadedImage}/>

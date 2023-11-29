@@ -1,7 +1,7 @@
 import Box from "@mui/material/Box";
 import Grid from "@mui/system/Unstable_Grid";
 import Typography from "@mui/material/Typography";
-import {Autocomplete, Checkbox, FormControlLabel, TextField} from "@mui/material";
+import {Autocomplete, Checkbox, FormControlLabel, TextField, useTheme} from "@mui/material";
 import * as React from "react";
 import ScienceIcon from "@mui/icons-material/Science";
 
@@ -46,11 +46,17 @@ interface SetupFormStepProps {
 }
 
 export default function SetupFormStep({ isGeneratingCode, programmingLanguage, framework, architecture, wantTest, setProgrammingLanguage, setFramework, setArchitecture, setWantTest }: SetupFormStepProps) {
+    const theme = useTheme();
+
     return (
         <Grid container spacing={2}>
             <Box sx={{ width: '100%', alignItems: 'center'}}>
                 <Grid xs={12} md={12} style={{ textAlign: 'center', alignItems: 'center' }}>
-                    <Typography sx={{ mt: 2, mb: 1, textAlign: 'left'}} variant="subtitle1">
+                    <Typography
+                        color={theme.palette.primary.main}
+                        sx={{ mt: 2, mb: 1, ml: 1, textAlign: 'left'}}
+                        variant="subtitle1"
+                    >
                         Select your favourite programming language, framework and software architecture ⬇️
                     </Typography>
                     <Grid container spacing={2}>
