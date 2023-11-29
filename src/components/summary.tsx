@@ -24,6 +24,7 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
     const { expand, ...other } = props;
     return <IconButton {...other} />;
 })(({ theme, expand }) => ({
+    maxWidth: 600,
     transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
     transition: theme.transitions.create('transform', {
         duration: theme.transitions.duration.shortest,
@@ -48,7 +49,7 @@ export default function Summary({ image, promptText, prompt }: SummaryProps) {
 
     return (
         <Grid container flexDirection="column" justifyContent="center" id="request-box" alignItems="center" flexWrap="nowrap">
-            <Grid item xs={12} md={12} sx={{ maxWidth: 700 }}>
+            <Grid item xs={12} md={12} sx={{ minWidth: 300 }}>
                 <Box sx={ boxStyle } >
                     <Card>
                         <CardMedia
@@ -112,7 +113,7 @@ export default function Summary({ image, promptText, prompt }: SummaryProps) {
                             <Grid container id='prompt-details' textAlign="right" justifyContent='right' alignItems="center" onClick={handleExpandClick}>
                                 <Grid xs={11} md={11}>
                                     <Typography variant="body2" color={theme.palette.primary.main}>
-                                        See the AI prompt
+                                        See more details
                                     </Typography>
                                 </Grid>
                                 <Grid xs={1} md={1}>
@@ -130,7 +131,7 @@ export default function Summary({ image, promptText, prompt }: SummaryProps) {
                             <CardContent>
                                 <Typography paragraph variant="subtitle2">Prompt</Typography>
                                 <Typography paragraph variant="body2" color={theme.palette.primary.main}>
-                                    {promptText}
+                                    <code>{promptText}</code>
                                 </Typography>
                             </CardContent>
                         </Collapse>
