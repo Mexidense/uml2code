@@ -1,57 +1,61 @@
 import {VisionHttpClient} from "@uml2code/back-end/generate-code/open-ai/vision.http-client";
 
+export type GenerateCodeFromSequenceDiagramRequest = {
+  image: string;
+  programmingLanguage: string;
+  framework: string;
+  architecture: string;
+  shouldHasTests: boolean;
+}
+
+export type GenerateCodeFromSequenceDiagramResponse = {
+  code: string;
+  prompt: string;
+}
+
 export class GenerateCodeFromSequenceDiagram {
   static async generateCode(
-    image: string,
-  ): Promise<string|null> {
-    const programmingLanguage = 'typescript';
-    const framework = 'NextJS';
-    const architectures = ['Domain Driven-Design', 'Hexagonal'];
-    const shouldHasTests = true;
-
-    const whoAreYouInstruction = `You are the best architecture software engineer who has knowledge in ${architectures.join(
-        ',',
-    )} architectures.\n`;
+    request: GenerateCodeFromSequenceDiagramRequest
+  ): Promise<GenerateCodeFromSequenceDiagramResponse|null> {
+    const whoAreYouInstruction = `You are the best architecture software engineer who has knowledge in ${request.architecture} architecture.\n`;
     const visionInstruction =
         'I provide you with a sequence diagram in PNG/JPG file format.\n';
-    const mainInstruction = `You should provide a ${programmingLanguage} example with all code generated watching this sequence diagram using ${architectures.join(
-        ',',
-    )} architectures taking into account all principles in this or these architecture/s.\n`;
-    const outputInstruction = `Do not explain anything just generate all within ONLY one ${programmingLanguage} code block in Markdown format.\n`;
+    const mainInstruction = `You should provide a ${request.programmingLanguage} example with all code generated watching this sequence diagram and, using ${request.architecture} architecture taking into account all their principles.\n`;
+    const outputInstruction = `Do not explain anything just generate all within ONLY one ${request.programmingLanguage} code block in Markdown format.\n`;
 
     let prompt = `${whoAreYouInstruction}${visionInstruction}${mainInstruction}${outputInstruction}`;
-    if (framework) {
-      prompt += `Also, follows the rules of this framework: ${framework}.\n`;
+    if (request.framework) {
+      prompt += `Also, follows the rules of this framework: ${request.framework}.\n`;
     }
-    if (shouldHasTests) {
-      prompt += `Also, include test.\n`;
+    if (request.shouldHasTests) {
+      prompt += `Finally, include test.\n`;
     }
 
     console.table(`🧪 ${prompt}`);
     console.log(`🧠 Understanding your sequence diagram...`);
 
-    const result = await VisionHttpClient.understandImage(prompt, image);
+    const result = await VisionHttpClient.understandImage(prompt, request.image);
     if (!result) {
       console.log(`😅 I didn't understand your sequence diagram`);
 
       return null;
     }
+    const programmingLanguageInLowerCase = request.programmingLanguage.toLowerCase();
 
-    const codeBlock = GenerateCodeFromSequenceDiagram.extractTypescriptCode(result, programmingLanguage);
+    const codeBlock = GenerateCodeFromSequenceDiagram.extractTypescriptCode(result, programmingLanguageInLowerCase);
     if (!codeBlock) {
-      console.log(`😅 Sorry, I couldn't generate the code`);
+      console.log(`😅 Sorry, I couldn't generate the code`, result);
 
       return null;
     }
 
-    const fileContent = `\`\`\`${programmingLanguage}\n${codeBlock}\n\`\`\``;
-    // const filePath = `files/${programmingLanguage}_code.md`;
-    // fs.writeFileSync(filePath, fileContent);
-    //
+    const fileContent = `\`\`\`${programmingLanguageInLowerCase}\n${codeBlock}\n\`\`\``;
 
-    console.log(`✅ Code generated: ${fileContent}`);
+    const response = {code: fileContent, prompt: prompt} as GenerateCodeFromSequenceDiagramResponse;
 
-    return fileContent;
+    console.log(`✅ Code generated: ${response}`);
+
+    return response;
   }
 
   static extractTypescriptCode(

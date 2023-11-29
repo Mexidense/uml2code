@@ -11,13 +11,18 @@ import {PromptInfo} from "@uml2code/view/sequence-diagram-to-code";
 import Grid from "@mui/system/Unstable_Grid";
 import Spinner from '@uml2code/components/spinner';
 import SetupFormStep from "@uml2code/components/form-steps/setup-form-step";
+import {
+    GenerateCodeFromSequenceDiagramRequest,
+    GenerateCodeFromSequenceDiagramResponse
+} from "@uml2code/back-end/generate-code/generate-code-from-sequence-diagram.service";
 
 interface ImageFormStepProps {
     setGeneratedCode: (value: string) => void;
     setPrompt: (value: PromptInfo) => void;
+    setPromptText: (value: string) => void;
 }
 
-export default function FormStepper({ setGeneratedCode, setPrompt }: ImageFormStepProps) {
+export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt }: ImageFormStepProps) {
     const numberOfSteps = 2;
 
     const [uploadedImage, setUploadedImage] = useState<string|null>(null);
@@ -78,7 +83,7 @@ export default function FormStepper({ setGeneratedCode, setPrompt }: ImageFormSt
                 imageSource: uploadedImage ?? '',
                 programmingLanguage: programmingLanguage ?? '',
                 framework: framework ?? '',
-                architectures: architecture ?? '',
+                architecture: architecture ?? '',
                 isItNeedTests: wantTest,
             })
 
@@ -111,18 +116,26 @@ export default function FormStepper({ setGeneratedCode, setPrompt }: ImageFormSt
 
     const generateCode = async () => {
         try {
+            const payload = JSON.stringify({
+                image: uploadedImage,
+                programmingLanguage: programmingLanguage,
+                framework: framework,
+                architecture: architecture,
+                shouldHasTests: wantTest
+            } as GenerateCodeFromSequenceDiagramRequest);
             const response = await fetch('api/image-uploader', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(uploadedImage),
+                body: payload,
             });
 
-            const result = await response.json();
-            const codeGenerated = { code: result.code };
+            const result = await response.json() as GenerateCodeFromSequenceDiagramResponse;
+            const { code, prompt} = result;
 
-            setGeneratedCode(codeGenerated.code);
+            setGeneratedCode(code);
+            setPromptText(prompt)
         } catch (error) {
             console.log(`❌ Something wrong generating code with AI...`, error)
         }

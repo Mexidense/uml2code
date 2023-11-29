@@ -1,13 +1,14 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import {VisionHttpClient} from "@uml2code/back-end/generate-code/open-ai/vision.http-client";
 import {
-    GenerateCodeFromSequenceDiagram
+    GenerateCodeFromSequenceDiagram, GenerateCodeFromSequenceDiagramResponse
 } from "@uml2code/back-end/generate-code/generate-code-from-sequence-diagram.service";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
     await new Promise(resolve => setTimeout(resolve, 1000));
 
-    res.status(200).json({code: "```typescript\n" +
+    res.status(200).json({
+        code: "```typescript\n" +
             "import { NextApiRequest, NextApiResponse } from 'next';\n" +
             "import { getSession } from 'next-auth/client';\n" +
             "\n" +
@@ -95,16 +96,36 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             "    expect(mockRes.json).toBeCalledWith({ error: 'User not logged in' });\n" +
             "  });\n" +
             "});\n" +
-            "```\n"});
-    // const code = await GenerateCodeFromSequenceDiagram.generateCode(req.body)
+            "```\n",
+        prompt: "You are the best architecture software engineer who has knowledge in Domain Driven-Design,Hexagonal architectures.\n" +
+            "I provide you with a sequence diagram in PNG/JPG file format.\n" +
+            "You should provide a typescript example with all code generated watching this sequence diagram using Domain Driven-Design,Hexagonal architectures taking into account all principles in this or these architecture/s.\n" +
+            "Do not explain anything just generate all within ONLY one typescript code block in Markdown format.\n" +
+            "Also, follows the rules of this framework: NextJS.\n" +
+            "Also, include test.\n"
+    });
     //
-    // res.status(200).json({code: code});
+    // const { image, programmingLanguage, framework, architecture, shouldHasTests} = req.body;
+    //
+    // const request = {
+    //     image: image,
+    //     programmingLanguage: programmingLanguage,
+    //     framework: framework,
+    //     architecture: architecture,
+    //     shouldHasTests: shouldHasTests
+    // };
+    //
+    // const response = await GenerateCodeFromSequenceDiagram.generateCode(request);
+    //
+    // console.log({ code: response?.code, prompt: response?.prompt });
+    //
+    // res.status(200).json({code: response?.code, prompt: response?.prompt} as GenerateCodeFromSequenceDiagramResponse);
 }
 
 export const config = {
     api: {
         bodyParser: {
-            sizeLimit: '10mb',
+            sizeLimit: '4mb',
         },
     },
 }
