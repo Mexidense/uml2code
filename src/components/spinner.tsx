@@ -77,7 +77,9 @@ export default function Spinner() {
         <Box sx={{ width: '100%' }}>
             <Grid container spacing={2} sx={{ textAlign: 'center' }}>
                 <Grid xs={12} md={12}>
-                    🧠 AI is analysing your fantastic UML sequence diagram... ✨
+                    <Typography color={theme.palette.primary.main} variant="h5">
+                        🧠 AI is analysing your fantastic UML sequence diagram... ✨
+                    </Typography>
                 </Grid>
                 <Grid xs={12} md={12}>
                     <LinearProgress />
