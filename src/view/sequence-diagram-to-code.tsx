@@ -2,7 +2,7 @@
 import {useState} from "react";
 import Grid from "@mui/system/Unstable_Grid";
 import {Box, Typography} from "@mui/material";
-import FormStepper from "@uml2code/components/form-stepper";
+import Form from "@uml2code/components/form-steps/form";
 import Result from "@uml2code/components/result";
 
 export type PromptInfo = {
@@ -31,7 +31,7 @@ export default function SequenceDiagramToCode() {
                     </Grid>
                     <Grid xs={12} md={12}>
                         {!generatedCode || !prompt || !promptText ? (
-                            <FormStepper setGeneratedCode={setGeneratedCode} setPrompt={setPrompt} setPromptText={setPromptText} />
+                            <Form setGeneratedCode={setGeneratedCode} setPrompt={setPrompt} setPromptText={setPromptText} />
                         ) : (
                             <Result generatedCode={generatedCode} prompt={prompt} promptText={promptText}/>
                         )}

@@ -23,7 +23,7 @@ export function ImageFileUploader({ setUploadedImage }: ImageFileUploaderProps) 
         setDisplayErrorAlert(true);
     }
 
-    const handleErrorAlertClose = (event?: SyntheticEvent | Event, reason?: string) => {
+    const handleErrorAlertClose = (_event?: SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
             return;
         }
@@ -79,6 +79,8 @@ export function ImageFileUploader({ setUploadedImage }: ImageFileUploaderProps) 
         if (selectedFile) {
             if (selectedFile.size > MAX_FILE_SIZE) {
                 throwErrorAlert('Maximum image size is 4MB')
+
+                return;
             }
 
             event.preventDefault();
@@ -142,8 +144,13 @@ export function ImageFileUploader({ setUploadedImage }: ImageFileUploaderProps) 
     return (
         <>
             <Stack spacing={2} sx={{ width: '100%' }}>
-                <Snackbar open={displayErrorAlert} autoHideDuration={6000} onClose={handleErrorAlertClose}>
-                    <Alert severity="error">{errorAlertMessage}</Alert>
+                <Snackbar
+                    open={displayErrorAlert}
+                    autoHideDuration={6000}
+                    onClose={handleErrorAlertClose}
+                    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                >
+                    <Alert variant="filled" severity="error">{errorAlertMessage}</Alert>
                 </Snackbar>
             </Stack>
             <Box
@@ -169,7 +176,7 @@ export function ImageFileUploader({ setUploadedImage }: ImageFileUploaderProps) 
                         />
                         <Grid xs={12} md={12}>
                             <Typography variant="h6">
-                                Click or drag and drop your UML sequence diagram image here 📥
+                                Click or drag & drop your UML sequence diagram image here 📥
                             </Typography>
                         </Grid>
                         <Grid xs={12} md={12}>

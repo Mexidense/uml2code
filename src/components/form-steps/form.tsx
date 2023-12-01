@@ -24,7 +24,7 @@ interface ImageFormStepProps {
     setPromptText: (value: string) => void;
 }
 
-export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt }: ImageFormStepProps) {
+export default function Form({ setGeneratedCode, setPromptText, setPrompt }: ImageFormStepProps) {
     const NUMBER_OF_STEPS = 2;
 
     const [uploadedImage, setUploadedImage] = useState<string|null>(null);
