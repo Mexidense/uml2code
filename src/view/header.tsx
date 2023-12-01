@@ -3,6 +3,7 @@ import {
     Box, Button,
     CssBaseline,
     Divider, Drawer, IconButton,
+    Link,
     List,
     ListItem,
     ListItemButton, ListItemIcon,
@@ -42,7 +43,9 @@ export default function Header(props: Props) {
     const drawer = (
         <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
             <Typography variant="h6" sx={{ my: 2 }}>
-                UML2Code
+                <Link href="/" underline="none">
+                    UML2Code
+                </Link>
             </Typography>
             <Divider />
             <List>
@@ -76,16 +79,28 @@ export default function Header(props: Props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography
-                        variant="h6"
-                        component="div"
-                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-                    >
-                        UML2Code
-                    </Typography>
+                   <Link
+                       color={theme => theme.palette.secondary.main}
+                       href="/"
+                       underline="none"
+                       sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                   >
+                       <Typography
+                           variant="h6"
+                           component="div"
+                       >
+                           UML2Code
+                       </Typography>
+                   </Link>
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         {navItems.map((item) => (
-                            <Button key={item.label} sx={{ color: '#fff' }} href={item.url} target="_blank" endIcon={item.icon}>
+                            <Button
+                                key={item.label}
+                                sx={{ color: theme => theme.palette.secondary.main }}
+                                href={item.url}
+                                target="_blank"
+                                endIcon={item.icon}
+                            >
                                 {item.label}
                             </Button>
                         ))}
