@@ -1,5 +1,5 @@
 import {Box, Button, Modal, Typography, useTheme} from "@mui/material";
-import {useState} from "react";
+import {SyntheticEvent, useState} from "react";
 import Image from 'next/image'
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
@@ -15,7 +15,13 @@ export function ErrorModal ({ errorMessage, open, setReset }: ErrorModalProps) {
         setOpenModal(false);
         setReset();
     }
-    const handleClose = () => setOpenModal(false);
+    const handleClose = (_event?: SyntheticEvent | Event, reason?: "backdropClick" | "escapeKeyDown") => {
+        if (reason && reason == "backdropClick") {
+            return;
+        }
+
+        setOpenModal(false);
+    }
 
     const theme = useTheme();
     const style = {
@@ -32,6 +38,7 @@ export function ErrorModal ({ errorMessage, open, setReset }: ErrorModalProps) {
 
     return <>
         <Modal
+            disableEscapeKeyDown
             open={openModal}
             onClose={handleClose}
             aria-labelledby="modal-modal-title"

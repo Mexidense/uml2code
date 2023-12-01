@@ -14,7 +14,7 @@ export type GenerateCodeFromSequenceDiagramResponse = {
   prompt: string;
 }
 
-const GENERAL_ERROR = `[Error 002] I didn't understand your sequence diagram. Please, try to send a image with better definition. 🙏🏽`
+const GENERAL_ERROR = `[Error 002] I didn't understand your sequence diagram. I appreciate your effort in sharing the sequence diagram. However, it seems like there might be some clarity issues. Could you please resend the image with a higher resolution or provide additional details for better understanding? Thank you! 🙏🏽`
 
 export class GenerateCodeFromSequenceDiagram {
   static async generateCode(
