@@ -40,6 +40,7 @@ export function ErrorModal ({ errorMessage, open, setReset }: ErrorModalProps) {
         <Modal
             disableEscapeKeyDown
             open={openModal}
+            // @ts-ignore
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"

@@ -176,7 +176,7 @@ export function ImageFileUploader({ setUploadedImage }: ImageFileUploaderProps) 
                         />
                         <Grid xs={12} md={12}>
                             <Typography variant="h6">
-                                Click or drag and drop your UML sequence diagram image here 📥
+                                Click or drag & drop your UML sequence diagram image here 📥
                             </Typography>
                         </Grid>
                         <Grid xs={12} md={12}>
