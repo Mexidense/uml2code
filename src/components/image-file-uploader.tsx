@@ -7,6 +7,7 @@ import * as React from "react";
 interface ImageFileUploaderProps {
     setUploadedImage: (imageSource: string|null) => void;
 }
+const MAX_FILE_SIZE = 4194304;
 
 export function ImageFileUploader({ setUploadedImage }: ImageFileUploaderProps) {
     const [isOver, setIsOver] = useState(false);
@@ -53,6 +54,11 @@ export function ImageFileUploader({ setUploadedImage }: ImageFileUploaderProps) 
         }
 
         const onlyOneFile = droppedFiles[0];
+        if (onlyOneFile.size > MAX_FILE_SIZE) {
+            throwErrorAlert('Maximum image size is 4MB')
+
+            return;
+        }
 
         try {
             await processFile(onlyOneFile);
@@ -71,6 +77,10 @@ export function ImageFileUploader({ setUploadedImage }: ImageFileUploaderProps) 
         const selectedFile = event.target.files?.[0];
 
         if (selectedFile) {
+            if (selectedFile.size > MAX_FILE_SIZE) {
+                throwErrorAlert('Maximum image size is 4MB')
+            }
+
             event.preventDefault();
             setIsOver(false);
 

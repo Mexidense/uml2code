@@ -60,7 +60,7 @@ export class GenerateCodeFromSequenceDiagram {
 
     const response = {code: fileContent, prompt: prompt} as GenerateCodeFromSequenceDiagramResponse;
 
-    console.log(`[Code generated] ${response}`);
+    console.log(`[Code generated] ${response.code}`);
 
     return response;
   }
