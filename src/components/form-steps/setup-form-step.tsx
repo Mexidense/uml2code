@@ -55,10 +55,10 @@ export default function SetupFormStep({ isGeneratingCode, programmingLanguage, f
                 <Grid xs={12} md={12} style={{ textAlign: 'center', alignItems: 'center' }}>
                     <Typography
                         color={theme.palette.primary.main}
-                        sx={{ mt: 2, mb: 1, ml: 1, textAlign: 'left'}}
+                        sx={{ mt: 2, mb: 1, ml: 1, textAlign: 'left', fontStyle: 'italic' }}
                         variant="subtitle1"
                     >
-                        Select your favourite programming language, framework and software architecture ⬇️
+                        Select your favourite programming language, framework and software architecture
                     </Typography>
                     <Grid container spacing={2}>
                         <Grid xs={12} md={4} style={{ textAlign: 'center', alignItems: 'center' }}>

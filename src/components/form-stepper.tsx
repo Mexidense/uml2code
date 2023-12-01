@@ -200,10 +200,10 @@ export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt
                                     <Grid xs={12} md={12} style={{ textAlign: 'center', alignItems: 'center' }}>
                                         <Typography
                                             color={theme.palette.primary.main}
-                                            sx={{ mt: 2, mb: 1, ml: 1, textAlign: 'left' }}
+                                            sx={{ mt: 2, mb: 1, ml: 1, textAlign: 'left', fontStyle: 'italic' }}
                                             variant="subtitle1"
                                         >
-                                            Please, leave your fantastic UML sequence diagram here ⬇️
+                                            Please, leave your fantastic UML sequence diagram here
                                         </Typography>
                                         <ImageFormStep setUploadedImage={setUploadedImage} imageSource={uploadedImage}/>
                                     </Grid>
