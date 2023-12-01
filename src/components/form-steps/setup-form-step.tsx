@@ -12,12 +12,13 @@ type ProgramingLanguagesType = {
 }
 
 const PROGRAMING_LANGUAGES_LIST: readonly ProgramingLanguagesType[] = [
-    { value: 'Typescript', frameworks: ['React', 'VueJS', 'Angular', 'NestJS', 'NextJS', 'Express']},
+    { value: 'Typescript', frameworks: ['NodeJS', 'NestJS', 'NextJS', 'Express', 'React', 'VueJS', 'Angular']},
+    { value: 'Javascript', frameworks: ['NodeJS', 'NestJS', 'MeteorJS', 'Express', 'React', 'VueJS', 'Angular', 'EmberJS']},
+    { value: 'Python', frameworks: ['Django', 'Flask', 'FastAPI', 'Pyramid', 'Bottle'] },
     { value: 'PHP', frameworks: ['Laravel', 'Symfony', 'CodeIgniter', 'Yii', 'CakePHP', 'Slim', 'Laminas', 'FuelPHP', 'Flight'] },
+    { value: 'Ruby', frameworks: ['Ruby on Rails', 'Sinatra', 'Hanami', 'Padrino', 'Cuba'] },
+    { value: 'Java', frameworks: ['Spring Framework', 'Apache Struts', 'Apache Wicket', 'Play', 'Vaadin'] },
     { value: 'Golang', frameworks: ['Gin', 'Echo', 'Beego', 'Revel', 'Fiber', 'Buffalo', 'Gorilla', 'Gorm', 'Iris', 'Goji'] },
-    { value: 'Java', frameworks: ['Spring Framework', 'Apache Struts', 'Apache Wicket', 'Play', 'Vaadin', 'Grails', 'Dropwizard', 'Vert.x'] },
-    { value: 'Ruby', frameworks: ['Ruby on Rails', 'Sinatra', 'Hanami', 'Padrino', 'Cuba', 'Merb', 'Grape', 'Camping', 'Ramaze', 'Nancy'] },
-    { value: 'Python', frameworks: ['Django', 'Flask', 'FastAPI', 'Pyramid', 'Bottle', 'CherryPy', 'Tornado', 'TurboGears', 'Web2py', 'Dash'] },
 ];
 
 const SOFTWARE_ARCHITECTURES: readonly string[] = [
