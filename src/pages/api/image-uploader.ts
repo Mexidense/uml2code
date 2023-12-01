@@ -14,10 +14,7 @@ export default async function POST (apiRequest: NextApiRequest, apiResponse: Nex
             architecture: architecture,
             shouldHasTests: shouldHasTests
         };
-
         const response = await GenerateCodeFromSequenceDiagram.generateCode(request);
-
-        console.log({ code: response?.code, prompt: response?.prompt });
 
         return apiResponse.status(200).json({code: response?.code, prompt: response?.prompt} as GenerateCodeFromSequenceDiagramResponse);
     } catch (error) {

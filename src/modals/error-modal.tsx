@@ -4,17 +4,18 @@ import Image from 'next/image'
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
 
 interface ErrorModalProps {
-    openProp: boolean;
+    errorMessage: string|null;
+    open: boolean;
     setReset: () => void;
 }
 
-export function ErrorModal ({ openProp, setReset }: ErrorModalProps) {
-    const [open, setOpen] = useState(openProp);
+export function ErrorModal ({ errorMessage, open, setReset }: ErrorModalProps) {
+    const [openModal, setOpenModal] = useState(open);
     const handleOpen = () => {
-        setOpen(false);
+        setOpenModal(false);
         setReset();
     }
-    const handleClose = () => setOpen(false);
+    const handleClose = () => setOpenModal(false);
 
     const theme = useTheme();
     const style = {
@@ -31,7 +32,7 @@ export function ErrorModal ({ openProp, setReset }: ErrorModalProps) {
 
     return <>
         <Modal
-            open={open}
+            open={openModal}
             onClose={handleClose}
             aria-labelledby="modal-modal-title"
             aria-describedby="modal-modal-description"
@@ -51,6 +52,15 @@ export function ErrorModal ({ openProp, setReset }: ErrorModalProps) {
                             height={400}
                         />
                     </Typography>
+                    {
+                        errorMessage && (
+                            <Box p={2} sx={{ backgroundColor: '#000', color: '#39FF14' }} textAlign="left">
+                                <Typography variant="caption" mt={2}>
+                                    <code>❗️ {errorMessage}</code>
+                                </Typography>
+                            </Box>
+                        )
+                    }
                     <Typography textAlign="center" mt={2}>
                         <Button
                             sx={{ border: '1px solid #000', borderColor: theme.palette.primary.main }}

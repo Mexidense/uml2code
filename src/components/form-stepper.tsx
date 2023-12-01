@@ -37,7 +37,9 @@ export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt
     const [skipped, setSkipped] = React.useState(new Set<number>());
 
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
+
     const [isThereAnyError, setIsThereAnyError] = React.useState<boolean>(false);
+    const [errorMessage, setErrorMessage] = React.useState<string | null>(null);
 
     const isStepOptional = (step: number) => {
         return step === NUMBER_OF_STEPS + 1;
@@ -119,6 +121,7 @@ export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt
 
     const handleReset = () => {
         setIsThereAnyError(false);
+        setErrorMessage(null);
         setIsLoading(false);
         setActiveStep(0);
     }
@@ -148,6 +151,14 @@ export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt
                 ),
             });
 
+            if (!response.ok) {
+                const result = await response.json() as { error: string};
+                setIsThereAnyError(true);
+                setErrorMessage(result.error);
+
+                return;
+            }
+
             const result = await response.json() as GenerateCodeFromSequenceDiagramResponse;
             const { code, prompt} = result;
 
@@ -155,6 +166,7 @@ export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt
             setPromptText(prompt)
         } catch (error) {
             setIsThereAnyError(true);
+            setErrorMessage((error as Error).message);
             console.log(`❌ Something wrong generating code with AI...`);
         }
     };
@@ -243,7 +255,7 @@ export default function FormStepper({ setGeneratedCode, setPromptText, setPrompt
             </Box>
             {
                 isThereAnyError && (
-                    <ErrorModal openProp={isThereAnyError} setReset={handleReset}/>
+                    <ErrorModal open={isThereAnyError} errorMessage={errorMessage} setReset={handleReset}/>
                 )
             }
         </>
