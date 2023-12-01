@@ -91,7 +91,7 @@ export class GenerateCodeFromSequenceDiagram {
     const whoAreYouInstruction = `You are the best architecture software engineer who has knowledge in ${architecture} architecture.\n`;
     const visionInstruction =
         'I provide you with a sequence diagram in PNG/JPG file format.\n';
-    const mainInstruction = `You should provide a ${programmingLanguage} example with all code generated watching this sequence diagram and, using ${architecture} architecture taking into account all their principles. Please, if you cannot understand the image sent, try to return an example in base all requirements\n`;
+    const mainInstruction = `You should provide a ${programmingLanguage} example with all code generated watching this sequence diagram and, using ${architecture} architecture taking into account all their principles.\n`;
     const outputInstruction = `Do not explain anything just generate all within ONLY one ${programmingLanguage} code block.\n`;
     const outputFormat = `All within a block like this: "\`\`\`${programmingLanguage.toLowerCase()}<CODE_HERE>\`\`\`" in Markdown format.\n`;
 
