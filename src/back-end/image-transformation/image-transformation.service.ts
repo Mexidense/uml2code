@@ -25,6 +25,8 @@ export class ImageTransformationService {
                    brightness: 0.5
                })
                .gamma()
+               .median()
+               .trim()
                .grayscale()
                .toColourspace('b-w')
                .negate()
