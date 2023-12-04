@@ -19,21 +19,22 @@ import {useTheme} from "@mui/material";
 import {ErrorModal} from "@uml2code/modals/error-modal";
 
 interface ImageFormStepProps {
+    prompt?: PromptInfo|undefined;
     setGeneratedCode: (value: string) => void;
     setPrompt: (value: PromptInfo) => void;
     setPromptText: (value: string) => void;
 }
 
-export default function Form({ setGeneratedCode, setPromptText, setPrompt }: ImageFormStepProps) {
+export default function Form({ setGeneratedCode, setPromptText, setPrompt, prompt }: ImageFormStepProps) {
     const NUMBER_OF_STEPS = 2;
 
-    const [uploadedImage, setUploadedImage] = useState<string|null>(null);
-    const [programmingLanguage, setProgrammingLanguage] = React.useState<string | null>(null);
-    const [framework, setFramework] = React.useState<string | null>(null);
-    const [architecture, setArchitecture] = React.useState<string | null>(null);
-    const [wantTest, setWantTest] = React.useState<boolean>(false);
+    const [uploadedImage, setUploadedImage] = useState<string|null>(prompt?.imageSource ?? null);
+    const [programmingLanguage, setProgrammingLanguage] = React.useState<string | null>(prompt?.programmingLanguage ?? null);
+    const [framework, setFramework] = React.useState<string | null>(prompt?.framework ?? null);
+    const [architecture, setArchitecture] = React.useState<string | null>(prompt?.architecture ?? null);
+    const [wantTest, setWantTest] = React.useState<boolean>(prompt?.isItNeedTests ?? false);
 
-    const [activeStep, setActiveStep] = React.useState(0);
+    const [activeStep, setActiveStep] = React.useState(prompt ? 1 : 0);
     const [skipped, setSkipped] = React.useState(new Set<number>());
 
     const [isLoading, setIsLoading] = React.useState<boolean>(false);
