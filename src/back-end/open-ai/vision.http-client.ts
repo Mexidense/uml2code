@@ -11,7 +11,7 @@ export class VisionHttpClient {
         throw new Error(`OPENAI_API_KEY not found`)
       }
 
-      const response = await new OpenAI({apiKey: apiKey}).chat.completions.create({
+      const response = await new OpenAI({ apiKey: apiKey }).chat.completions.create({
         model: 'gpt-4-vision-preview',
         messages: [
           {

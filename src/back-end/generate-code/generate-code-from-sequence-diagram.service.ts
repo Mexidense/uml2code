@@ -1,5 +1,4 @@
-import {VisionHttpClient} from "@uml2code/back-end/generate-code/open-ai/vision.http-client";
-import {GenerateCodeFromSequenceDiagramNoResultError} from "@uml2code/back-end/generate-code/error/generate-code-from-sequence-diagram-no-result.error";
+import {VisionHttpClient} from "@uml2code/back-end/open-ai/vision.http-client";
 
 export type GenerateCodeFromSequenceDiagramRequest = {
   image: string;
@@ -36,7 +35,7 @@ export class GenerateCodeFromSequenceDiagram {
       const errorMessage = `[Error 001] Open AI error: ${(error as Error).message}`;
       console.log(errorMessage);
 
-      throw new GenerateCodeFromSequenceDiagramNoResultError(errorMessage)
+      throw new Error(errorMessage)
     }
     console.log(`[Open AI result] ${result}`);
 
@@ -44,7 +43,7 @@ export class GenerateCodeFromSequenceDiagram {
       const errorMessage = GENERAL_ERROR;
       console.log(errorMessage);
 
-      throw new GenerateCodeFromSequenceDiagramNoResultError(errorMessage);
+      throw new Error(errorMessage);
     }
     const programmingLanguageInLowerCase = request.programmingLanguage.toLowerCase();
 
@@ -53,7 +52,7 @@ export class GenerateCodeFromSequenceDiagram {
       const errorMessage = GENERAL_ERROR;
       console.log(errorMessage);
 
-      throw new GenerateCodeFromSequenceDiagramNoResultError(errorMessage)
+      throw new Error(errorMessage)
     }
 
     const fileContent = `\`\`\`${programmingLanguageInLowerCase}\n${codeBlock}\n\`\`\``;
@@ -91,7 +90,7 @@ export class GenerateCodeFromSequenceDiagram {
     const whoAreYouInstruction = `You are the best architecture software engineer who has knowledge in ${architecture} architecture.\n`;
     const visionInstruction =
         'I provide you with a sequence diagram in PNG/JPG file format.\n';
-    const mainInstruction = `You should provide a ${programmingLanguage} example with all code generated watching this sequence diagram and, using ${architecture} architecture taking into account all their principles.\n`;
+    const mainInstruction = `You should provide a ${programmingLanguage} example with all code generated watching this sequence diagram and, using ${architecture} architecture taking into account all their principles. If the image contains hand-written notes, ignore these notes and generate the code in base the diagram. \n`;
     const outputInstruction = `Do not explain anything just generate all within ONLY one ${programmingLanguage} code block.\n`;
     const outputFormat = `All within a block like this: "\`\`\`${programmingLanguage.toLowerCase()}<CODE_HERE>\`\`\`" in Markdown format.\n`;
 
