@@ -18,6 +18,12 @@ export default function SequenceDiagramToCode() {
     const [prompt, setPrompt] = useState<PromptInfo|null>(null);
     const [promptText, setPromptText] = useState<string|null>(null);
 
+    const resetSequenceDiagramToCode = () => {
+        setPrompt(null);
+        setPromptText(null);
+        setGeneratedCode(null);
+    }
+
     return (
         <main>
             <Box sx={{ width: '100%', padding: '0 10px' }}>
@@ -33,7 +39,7 @@ export default function SequenceDiagramToCode() {
                         {!generatedCode || !prompt || !promptText ? (
                             <Form setGeneratedCode={setGeneratedCode} setPrompt={setPrompt} setPromptText={setPromptText} />
                         ) : (
-                            <Result generatedCode={generatedCode} prompt={prompt} promptText={promptText}/>
+                            <Result generatedCode={generatedCode} prompt={prompt} promptText={promptText} reset={resetSequenceDiagramToCode} />
                         )}
                     </Grid>
                 </Grid>

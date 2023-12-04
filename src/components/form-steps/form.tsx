@@ -203,7 +203,7 @@ export default function Form({ setGeneratedCode, setPromptText, setPrompt }: Ima
                                             sx={{ mt: 2, mb: 1, ml: 1, textAlign: 'left', fontStyle: 'italic' }}
                                             variant="subtitle1"
                                         >
-                                            Please, leave your fantastic UML sequence diagram here
+                                            Please, leave your fantastic UML sequence diagram
                                         </Typography>
                                         <ImageFormStep setUploadedImage={setUploadedImage} imageSource={uploadedImage}/>
                                     </Grid>
