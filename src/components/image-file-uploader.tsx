@@ -175,7 +175,7 @@ export function ImageFileUploader({ setUploadedImage }: ImageFileUploaderProps) 
                             onChange={handleFileInputChange}
                         />
                         <Grid xs={12} md={12}>
-                            <Typography variant="h6">
+                            <Typography variant="subtitle1" sx={{ p: 2 }}>
                                 Click or drag & drop your UML sequence diagram image here 📥
                             </Typography>
                         </Grid>
