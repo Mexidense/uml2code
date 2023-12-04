@@ -4,6 +4,7 @@ import {getTheme} from "@uml2code/app/theme";
 import {Box, Container, CssBaseline, ThemeProvider} from "@mui/material";
 import Header from "@uml2code/view/header";
 import {StickyFooter} from "@uml2code/view/sticky-footer";
+import { Analytics } from '@vercel/analytics/react';
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -22,6 +23,7 @@ export default function RootLayout({
                     <Box sx={{ marginTop: 10 }}>
                         <div className={inter.className}>
                             {children}
+                            <Analytics />
                         </div>
                     </Box>
                     <StickyFooter />
