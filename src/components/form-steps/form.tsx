@@ -17,6 +17,7 @@ import {
 } from "@uml2code/back-end/generate-code/generate-code-from-sequence-diagram.service";
 import {useTheme} from "@mui/material";
 import {ErrorModal} from "@uml2code/modals/error-modal";
+import {ImageTransformationService} from "@uml2code/back-end/image-transformation/image-transformation.service";
 
 interface ImageFormStepProps {
     prompt?: PromptInfo|undefined;
@@ -132,13 +133,19 @@ export default function Form({ setGeneratedCode, setPromptText, setPrompt, promp
         const { csrfToken } = await csrfResp.json();
 
         try {
+            if (!uploadedImage) {
+                return;
+            }
+            const transformedImage = await ImageTransformationService.transform(uploadedImage);
+
             const payload = {
-                image: uploadedImage,
+                image: transformedImage,
                 programmingLanguage: programmingLanguage,
                 framework: framework,
                 architecture: architecture,
                 shouldHasTests: wantTest
             } as GenerateCodeFromSequenceDiagramRequest;
+
             const response = await fetch('api/image-uploader', {
                 method: 'POST',
                 headers: {
