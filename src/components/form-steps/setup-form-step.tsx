@@ -50,9 +50,9 @@ export default function SetupFormStep({ isGeneratingCode, programmingLanguage, f
     const theme = useTheme();
 
     return (
-        <Grid container spacing={2}>
+        <Grid spacing={2} container>
             <Box sx={{ width: '100%', alignItems: 'center'}}>
-                <Grid xs={12} md={12} style={{ textAlign: 'center', alignItems: 'center' }}>
+                <Grid md={12} style={{ textAlign: 'center', alignItems: 'center' }} xs={12}>
                     <Typography
                         color={theme.palette.primary.main}
                         sx={{ mt: 2, mb: 1, ml: 1, textAlign: 'left', fontStyle: 'italic' }}
@@ -60,60 +60,60 @@ export default function SetupFormStep({ isGeneratingCode, programmingLanguage, f
                     >
                         Select your favourite programming language, framework and software architecture
                     </Typography>
-                    <Grid container spacing={2}>
-                        <Grid xs={12} md={4} style={{ textAlign: 'center', alignItems: 'center' }}>
+                    <Grid spacing={2} container>
+                        <Grid md={4} style={{ textAlign: 'center', alignItems: 'center' }} xs={12}>
                             <Autocomplete
-                                autoComplete
-                                disablePortal
-                                id="programming-language"
                                 color="secondary"
                                 disabled={isGeneratingCode}
-                                options={PROGRAMING_LANGUAGES_LIST.map((value) => value.value)}
                                 getOptionLabel={(option) => option}
-                                sx={{ width: '100%' }}
+                                id="programming-language"
+                                options={PROGRAMING_LANGUAGES_LIST.map((value) => value.value)}
                                 renderInput={(params) =>
                                     <TextField {...params} color="primary" label="Programming language" />
                                 }
+                                sx={{ width: '100%' }}
                                 value={programmingLanguage}
+                                autoComplete
+                                disablePortal
                                 onChange={(_event: React.SyntheticEvent<Element, Event>, newValue: string | null) => {
                                     setProgrammingLanguage(newValue);
                                     setFramework(null)
                                 }}
                             />
                         </Grid>
-                        <Grid xs={12} md={4} style={{ textAlign: 'center', alignItems: 'center' }}>
+                        <Grid md={4} style={{ textAlign: 'center', alignItems: 'center' }} xs={12}>
                             <Autocomplete
-                                autoComplete
-                                disablePortal
-                                id="framework"
                                 color="secondary"
                                 disabled={isGeneratingCode}
-                                options={PROGRAMING_LANGUAGES_LIST.find((value) => value.value === programmingLanguage)?.frameworks ?? []}
                                 getOptionLabel={(option) => option}
-                                sx={{ width: '100%' }}
+                                id="framework"
+                                options={PROGRAMING_LANGUAGES_LIST.find((value) => value.value === programmingLanguage)?.frameworks ?? []}
                                 renderInput={(params) =>
                                     <TextField {...params} color="primary" label="Frameworks" />
                                 }
+                                sx={{ width: '100%' }}
                                 value={framework}
+                                autoComplete
+                                disablePortal
                                 onChange={(_event: React.SyntheticEvent<Element, Event>, newValue: string | null) => {
                                     setFramework(newValue);
                                 }}
                             />
                         </Grid>
-                        <Grid xs={12} md={4} style={{ textAlign: 'center', alignItems: 'center' }}>
+                        <Grid md={4} style={{ textAlign: 'center', alignItems: 'center' }} xs={12}>
                             <Autocomplete
-                                autoComplete
-                                disablePortal
-                                id="software-architecture"
                                 color="secondary"
                                 disabled={isGeneratingCode}
-                                options={SOFTWARE_ARCHITECTURES}
                                 getOptionLabel={(option) => option}
-                                sx={{ width: '100%' }}
+                                id="software-architecture"
+                                options={SOFTWARE_ARCHITECTURES}
                                 renderInput={(params) =>
                                     <TextField {...params} color="primary" label="Software architecture" />
                                 }
+                                sx={{ width: '100%' }}
                                 value={architecture}
+                                autoComplete
+                                disablePortal
                                 onChange={(_event: React.SyntheticEvent<Element, Event>, newValue: string | null) => {
                                     setArchitecture(newValue);
                                 }}
@@ -121,15 +121,15 @@ export default function SetupFormStep({ isGeneratingCode, programmingLanguage, f
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid xs={12} md={12} style={{ display: 'flex', flexDirection: 'column', textAlign: 'center', alignItems: 'center' }}>
-                    <Grid xs={12} md={4} style={{ textAlign: 'center', alignItems: 'center' }}>
+                <Grid md={12} style={{ display: 'flex', flexDirection: 'column', textAlign: 'center', alignItems: 'center' }} xs={12}>
+                    <Grid md={4} style={{ textAlign: 'center', alignItems: 'center' }} xs={12}>
                         <FormControlLabel
                             control={
                                 <Checkbox
                                     checked={wantTest}
-                                    onChange={() => setWantTest((prev: boolean) => !prev)}
-                                    color="success"
                                     checkedIcon={<ScienceIcon />}
+                                    color="success"
+                                    onChange={() => setWantTest((prev: boolean) => !prev)}
                                 />
                             }
                             disabled={isGeneratingCode}

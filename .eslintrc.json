@@ -5,6 +5,23 @@
     "plugin:react/recommended"
   ],
   "rules": {
+    "react/jsx-sort-props": [
+      2,
+      {
+        "callbacksLast": true,
+        "shorthandFirst": false,
+        "shorthandLast": true,
+        "ignoreCase": true,
+        "noSortAlphabetically": false
+      }
+    ],
+    "react/jsx-max-props-per-line": [
+      1,
+      {
+        "maximum": 1,
+        "when": "multiline"
+      }
+    ],
     "react/react-in-jsx-scope": "off",
     "no-use-before-define": "off",
     "import/extensions": "off",

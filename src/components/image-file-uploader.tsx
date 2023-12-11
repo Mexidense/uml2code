@@ -145,41 +145,41 @@ export function ImageFileUploader({ setUploadedImage }: ImageFileUploaderProps) 
         <>
             <Stack spacing={2} sx={{ width: '100%' }}>
                 <Snackbar
-                    open={displayErrorAlert}
-                    autoHideDuration={6000}
-                    onClose={handleErrorAlertClose}
                     anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+                    autoHideDuration={6000}
+                    open={displayErrorAlert}
+                    onClose={handleErrorAlertClose}
                 >
-                    <Alert variant="filled" severity="error">{errorAlertMessage}</Alert>
+                    <Alert severity="error" variant="filled">{errorAlertMessage}</Alert>
                 </Snackbar>
             </Stack>
             <Box
-                onDragOver={handleDragOver}
-                onDragLeave={handleDragLeave}
-                onDrop={handleDrop}
-                onClick={handleClick}
-                onMouseEnter={() => setIsHovered(true)}
-                onMouseLeave={() => setIsHovered(false)}
                 style={{
                     ...containerStyle,
                     ...(isOver || isHovered ? hoverStyle : {}),
                 }}
+                onClick={handleClick}
+                onDragLeave={handleDragLeave}
+                onDragOver={handleDragOver}
+                onDrop={handleDrop}
+                onMouseEnter={() => setIsHovered(true)}
+                onMouseLeave={() => setIsHovered(false)}
             >
                 <Box sx={{ width: '100%' }}>
-                    <Grid container spacing={4} color={theme.palette.primary.main}>
+                    <Grid color={theme.palette.primary.main} spacing={4} container>
                         <input
-                            type="file"
                             accept="image/png, image/jpeg"
                             ref={fileInputRef}
                             style={{ display: 'none' }}
+                            type="file"
                             onChange={handleFileInputChange}
                         />
-                        <Grid xs={12} md={12}>
-                            <Typography variant="subtitle1" sx={{ p: 2 }}>
+                        <Grid md={12} xs={12}>
+                            <Typography sx={{ p: 2 }} variant="subtitle1">
                                 Click or drag & drop your UML sequence diagram image here 📥
                             </Typography>
                         </Grid>
-                        <Grid xs={12} md={12}>
+                        <Grid md={12} xs={12}>
                             <Typography variant="caption">
                                 <code>(Maximum size: 4MB)</code>
                             </Typography>

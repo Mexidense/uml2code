@@ -9,10 +9,10 @@ export function StickyFooter() {
                 minHeight: '10vh'
             }}
         >
-            <AppBar position="fixed" style={{ top: 'auto', bottom: 0, alignItems: 'flex-end'}} color="primary">
+            <AppBar color="primary" position="fixed" style={{ top: 'auto', bottom: 0, alignItems: 'flex-end'}}>
                 <Toolbar>
-                    <Typography variant="subtitle2" color="secondary">
-                        <code>Made with ❤️ by <Link href="https://www.linkedin.com/in/sbrionesr/" color="secondary" target="_blank" underline="hover">Salvador Briones</Link></code>
+                    <Typography color="secondary" variant="subtitle2">
+                        <code>Made with ❤️ by <Link color="secondary" href="https://www.linkedin.com/in/sbrionesr/" target="_blank" underline="hover">Salvador Briones</Link></code>
                     </Typography>
                 </Toolbar>
             </AppBar>

@@ -35,19 +35,19 @@ export default function SequenceDiagramToCode() {
     return (
         <main>
             <Box sx={{ width: '100%', padding: '0 10px' }}>
-                <Grid container spacing={2}>
-                    <Grid xs={12} md={12}>
+                <Grid spacing={2} container>
+                    <Grid md={12} xs={12}>
                         <Box sx={{ textAlign: 'center'}}>
-                            <Typography align="center" variant="h4" color="primary">
+                            <Typography align="center" color="primary" variant="h4">
                                 UML sequence diagram to code
                             </Typography>
                         </Box>
                     </Grid>
-                    <Grid xs={12} md={12}>
+                    <Grid md={12} xs={12}>
                         {!generatedCode || !prompt || !promptText ? (
                             <Form
-                                setGeneratedCode={setGeneratedCode}
                                 prompt={prompt}
+                                setGeneratedCode={setGeneratedCode}
                                 setPrompt={setPrompt}
                                 setPromptText={setPromptText}
                             />
@@ -59,27 +59,27 @@ export default function SequenceDiagramToCode() {
                                     promptText={promptText}
                                 />
                                 <SpeedDial
+                                    ariaLabel="Actions"
+                                    icon={<SpeedDialIcon />}
                                     sx={{
                                         flexDirection: 'row-reverse',
                                         position: 'sticky',
                                         textAlign: 'right',
                                         alignItems: 'flex-end',
                                     }}
-                                    ariaLabel="Actions"
-                                    icon={<SpeedDialIcon />}
                                 >
                                     <SpeedDialAction
-                                        tooltipOpen
-                                        key="new-request"
                                         icon={<AutorenewIcon />}
+                                        key="new-request"
                                         tooltipTitle="New request"
+                                        tooltipOpen
                                         onClick={handleNewRequest}
                                     />
                                     <SpeedDialAction
-                                        tooltipOpen
-                                        key="edit-request"
                                         icon={<EditIcon />}
+                                        key="edit-request"
                                         tooltipTitle="Edit request"
+                                        tooltipOpen
                                         onClick={handleEditSetup}
                                     />
                                 </SpeedDial>

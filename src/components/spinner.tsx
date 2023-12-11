@@ -75,30 +75,30 @@ export default function Spinner() {
 
     return (
         <Box sx={{ width: '100%' }}>
-            <Grid container spacing={2} sx={{ textAlign: 'center' }}>
-                <Grid xs={12} md={12}>
+            <Grid spacing={2} sx={{ textAlign: 'center' }} container>
+                <Grid md={12} xs={12}>
                     <Typography color={theme.palette.primary.main} variant="h5">
                         🧠 AI is analysing your fantastic UML sequence diagram... ✨
                     </Typography>
                 </Grid>
-                <Grid xs={12} md={12}>
+                <Grid md={12} xs={12}>
                     <LinearProgress />
                 </Grid>
             </Grid>
-            <Grid container mt={2}>
-                <Grid xs={12} md={12} sx={{ textAlign: 'center'}}>
+            <Grid mt={2} container>
+                <Grid md={12} sx={{ textAlign: 'center'}} xs={12}>
                     <Typography color={theme.palette.primary.main} variant="subtitle1">
                         <QuizIcon/> Did you know...?
                     </Typography>
                 </Grid>
-                <Grid xs={12} md={12} sx={{ textAlign: 'center'}}>
+                <Grid md={12} sx={{ textAlign: 'center'}} xs={12}>
                     <Typography color={theme.palette.primary.main} variant="subtitle1">
                         ...{FANNY_FACTS.at(tipIndex) ?? ''} <EmojiEmotionsIcon />
                     </Typography>
                 </Grid>
             </Grid>
-            <Grid container mt={2}>
-                <Grid xs={12} md={12} sx={{ textAlign: 'center'}}>
+            <Grid mt={2} container>
+                <Grid md={12} sx={{ textAlign: 'center'}} xs={12}>
                     <Typography color={theme.palette.primary.main} variant="caption">
                         <code>Powered by OpenAI (gpt-4-vision-preview)</code>
                     </Typography>

@@ -50,79 +50,79 @@ export default function Summary({ image, promptText, prompt }: SummaryProps) {
     const theme = useTheme();
 
     return (
-        <Grid container flexDirection="column" justifyContent="center" id="request-box" alignItems="center" flexWrap="nowrap">
-            <Grid item xs={12} md={12} sx={{ minWidth: 300 }}>
+        <Grid alignItems="center" flexDirection="column" flexWrap="nowrap" id="request-box" justifyContent="center" container>
+            <Grid md={12} sx={{ minWidth: 300 }} xs={12} item>
                 <Box sx={ boxStyle } >
                     <Card>
                         <CardMedia
+                            alt="UML sequence diagram"
                             component="img"
                             height={300}
                             image={image}
-                            alt="UML sequence diagram"
                             sx={{ padding: "1em 1em 0 1em", objectFit: 'cover' }}
                         />
                         <CardContent>
-                            <Grid container justifyContent='center' alignItems="flex-end">
-                                <Grid item xs={12} md={6}>
-                                    <Typography variant="h5" color="text.primary">
+                            <Grid alignItems="flex-end" justifyContent='center' container>
+                                <Grid md={6} xs={12} item>
+                                    <Typography color="text.primary" variant="h5">
                                         Programming language:
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={12} md={6}>
-                                    <Typography variant="h5" textAlign="right" color={theme.palette.primary.main}>
+                                <Grid md={6} xs={12} item>
+                                    <Typography color={theme.palette.primary.main} textAlign="right" variant="h5">
                                         {prompt.programmingLanguage}
                                     </Typography>
                                 </Grid>
                             </Grid>
-                            <Grid container justifyContent='center' alignItems="flex-end">
-                                <Grid item xs={12} md={6}>
-                                    <Typography variant="h5" color="text.primary">
+                            <Grid alignItems="flex-end" justifyContent='center' container>
+                                <Grid md={6} xs={12} item>
+                                    <Typography color="text.primary" variant="h5">
                                         Framework:
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={12} md={6}>
-                                    <Typography variant="h5" textAlign="right" color={theme.palette.primary.main}>
+                                <Grid md={6} xs={12} item>
+                                    <Typography color={theme.palette.primary.main} textAlign="right" variant="h5">
                                         {prompt.framework}
                                     </Typography>
                                 </Grid>
                             </Grid>
-                            <Grid container justifyContent='center' alignItems="flex-end">
-                                <Grid item xs={12} md={6}>
-                                    <Typography variant="h5" color="text.primary">
+                            <Grid alignItems="flex-end" justifyContent='center' container>
+                                <Grid md={6} xs={12} item>
+                                    <Typography color="text.primary" variant="h5">
                                         Software architecture:
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={12} md={6}>
-                                    <Typography variant="h5" textAlign="right" color={theme.palette.primary.main}>
+                                <Grid md={6} xs={12} item>
+                                    <Typography color={theme.palette.primary.main} textAlign="right" variant="h5">
                                         {prompt.architecture}
                                     </Typography>
                                 </Grid>
                             </Grid>
-                            <Grid container justifyContent='center' alignItems="flex-end">
-                                <Grid item xs={12} md={6}>
-                                    <Typography variant="h5" color="text.primary">
+                            <Grid alignItems="flex-end" justifyContent='center' container>
+                                <Grid md={6} xs={12} item>
+                                    <Typography color="text.primary" variant="h5">
                                         Did you want to add test?
                                     </Typography>
                                 </Grid>
-                                <Grid item xs={12} md={6}>
-                                    <Typography variant="h5" textAlign="right" color={theme.palette.primary.main}>
+                                <Grid md={6} xs={12} item>
+                                    <Typography color={theme.palette.primary.main} textAlign="right" variant="h5">
                                         {prompt.isItNeedTests ? <ScienceIcon /> : <CloseIcon />} {prompt.isItNeedTests ? 'Yes' : 'No'}
                                     </Typography>
                                 </Grid>
                             </Grid>
                         </CardContent>
                         <CardActions>
-                            <Grid container id='prompt-details' textAlign="right" justifyContent='right' alignItems="center" onClick={handleExpandClick}>
-                                <Grid xs={11} md={11}>
-                                    <Typography variant="body2" color={theme.palette.primary.main}>
+                            <Grid alignItems="center" id='prompt-details' justifyContent='right' textAlign="right" container onClick={handleExpandClick}>
+                                <Grid md={11} xs={11}>
+                                    <Typography color={theme.palette.primary.main} variant="body2">
                                         See more details
                                     </Typography>
                                 </Grid>
-                                <Grid xs={1} md={1}>
+                                <Grid md={1} xs={1}>
                                     <ExpandMore
-                                        expand={expandedDetails}
                                         aria-expanded={expandedDetails}
                                         aria-label="show more details"
+                                        expand={expandedDetails}
                                     >
                                         <ExpandMoreIcon />
                                     </ExpandMore>
@@ -131,8 +131,8 @@ export default function Summary({ image, promptText, prompt }: SummaryProps) {
                         </CardActions>
                         <Collapse in={expandedDetails} timeout="auto" unmountOnExit>
                             <CardContent>
-                                <Typography paragraph variant="subtitle2">Prompt</Typography>
-                                <Typography paragraph variant="body2" color={theme.palette.primary.main}>
+                                <Typography variant="subtitle2" paragraph>Prompt</Typography>
+                                <Typography color={theme.palette.primary.main} variant="body2" paragraph>
                                     <code>{promptText}</code>
                                 </Typography>
                             </CardContent>

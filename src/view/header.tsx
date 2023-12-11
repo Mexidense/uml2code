@@ -41,8 +41,8 @@ export default function Header(props: Props) {
     };
 
     const drawer = (
-        <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
-            <Typography variant="h6" sx={{ my: 2 }}>
+        <Box sx={{ textAlign: 'center' }} onClick={handleDrawerToggle}>
+            <Typography sx={{ my: 2 }} variant="h6">
                 <Link href="/" underline="none">
                     UML2Code
                 </Link>
@@ -51,7 +51,7 @@ export default function Header(props: Props) {
             <List>
                 {navItems.map((item) => (
                     <ListItem key={item.label}>
-                        <ListItemButton sx={{ textAlign: 'center' }} href={item.url} target="_blank">
+                        <ListItemButton href={item.url} sx={{ textAlign: 'center' }} target="_blank">
                             <ListItemIcon>
                                 {item.icon}
                             </ListItemIcon>
@@ -71,23 +71,23 @@ export default function Header(props: Props) {
             <AppBar component="nav">
                 <Toolbar>
                     <IconButton
-                        color="inherit"
                         aria-label="open drawer"
+                        color="inherit"
                         edge="start"
-                        onClick={handleDrawerToggle}
                         sx={{ mr: 2, display: { sm: 'none' } }}
+                        onClick={handleDrawerToggle}
                     >
                         <MenuIcon />
                     </IconButton>
                    <Link
                        color={theme => theme.palette.secondary.main}
                        href="/"
-                       underline="none"
                        sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+                       underline="none"
                    >
                        <Typography
-                           variant="h6"
                            component="div"
+                           variant="h6"
                        >
                            UML2Code
                        </Typography>
@@ -95,11 +95,11 @@ export default function Header(props: Props) {
                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
                         {navItems.map((item) => (
                             <Button
+                                endIcon={item.icon}
+                                href={item.url}
                                 key={item.label}
                                 sx={{ color: theme => theme.palette.secondary.main }}
-                                href={item.url}
                                 target="_blank"
-                                endIcon={item.icon}
                             >
                                 {item.label}
                             </Button>
@@ -110,16 +110,16 @@ export default function Header(props: Props) {
             <nav>
                 <Drawer
                     container={container}
-                    variant="temporary"
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
                     ModalProps={{
                         keepMounted: true, // Better open performance on mobile.
                     }}
+                    open={mobileOpen}
                     sx={{
                         display: { xs: 'block', sm: 'none' },
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                     }}
+                    variant="temporary"
+                    onClose={handleDrawerToggle}
                 >
                     {drawer}
                 </Drawer>

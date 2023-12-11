@@ -28,8 +28,8 @@ export function ImageFormStep({ setUploadedImage, imageSource }: ImageFormStepPr
     return (
         <>
             <Box sx={{ width: '100%', alignItems: 'center'}}>
-                <Grid container spacing={2}>
-                    <Grid xs={12} md={12} style={{ textAlign: 'center', alignItems: 'center' }}>
+                <Grid spacing={2} container>
+                    <Grid md={12} style={{ textAlign: 'center', alignItems: 'center' }} xs={12}>
                         {
                             !image && (
                                 <ImageFileUploader setUploadedImage={handleImageUpdate}/>
@@ -40,10 +40,10 @@ export function ImageFormStep({ setUploadedImage, imageSource }: ImageFormStepPr
                                 <Card>
                                     <CardActionArea>
                                         <CardMedia
+                                            alt="UML sequence diagram"
                                             component="img"
                                             height={300}
                                             image={image}
-                                            alt="UML sequence diagram"
                                             sx={{ padding: "1em 1em 0 1em", objectFit: 'cover' }}
                                         />
                                     </CardActionArea>
