@@ -2,6 +2,8 @@
 
 Welcome to the UML2Code – your go-to tool for turning UML sequence diagrams into actual code! 🚀
 
+![UML2Code](uml2code.png)
+
 ## Overview
 This project leverages the power of OpenAI's GPT-4 Turbo with vision to process UML sequence diagram images. The tool then generates code snippets in your preferred programming language, framework, and software architecture. Plus, it's now in an exciting beta phase, so you get to be a part of the journey!
 
