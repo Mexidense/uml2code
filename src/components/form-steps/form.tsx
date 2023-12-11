@@ -1,22 +1,23 @@
-import * as React from 'react';
+import {useTheme} from "@mui/material";
 import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
+import Button from '@mui/material/Button';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
+import Stepper from '@mui/material/Stepper';
 import Typography from '@mui/material/Typography';
-import {ImageFormStep} from "@uml2code/components/form-steps/image-form-step";
-import {useState} from "react";
-import {PromptInfo} from "@uml2code/view/sequence-diagram-to-code";
 import Grid from "@mui/system/Unstable_Grid";
-import Spinner from '@uml2code/components/spinner';
-import SetupFormStep from "@uml2code/components/form-steps/setup-form-step";
+import {useState} from "react";
+import * as React from 'react';
+
 import {
     GenerateCodeFromSequenceDiagramRequest,
     GenerateCodeFromSequenceDiagramResponse
 } from "@uml2code/back-end/generate-code/generate-code-from-sequence-diagram.service";
-import {useTheme} from "@mui/material";
+import {ImageFormStep} from "@uml2code/components/form-steps/image-form-step";
+import SetupFormStep from "@uml2code/components/form-steps/setup-form-step";
+import Spinner from '@uml2code/components/spinner';
 import {ErrorModal} from "@uml2code/modals/error-modal";
+import {PromptInfo} from "@uml2code/view/sequence-diagram-to-code";
 
 interface ImageFormStepProps {
     prompt?: PromptInfo|undefined;
@@ -197,8 +198,8 @@ export default function Form({ setGeneratedCode, setPromptText, setPrompt, promp
                     activeStep === 0 && (
                         <>
                             <Box sx={{ width: '100%', alignItems: 'center'}}>
-                                <Grid container spacing={2}>
-                                    <Grid xs={12} md={12} style={{ textAlign: 'center', alignItems: 'center' }}>
+                                <Grid spacing={2} container>
+                                    <Grid md={12} style={{ textAlign: 'center', alignItems: 'center' }} xs={12}>
                                         <Typography
                                             color={theme.palette.primary.main}
                                             sx={{ mt: 2, mb: 1, ml: 1, textAlign: 'left', fontStyle: 'italic' }}
@@ -206,7 +207,7 @@ export default function Form({ setGeneratedCode, setPromptText, setPrompt, promp
                                         >
                                             Please, leave your fantastic UML sequence diagram
                                         </Typography>
-                                        <ImageFormStep setUploadedImage={setUploadedImage} imageSource={uploadedImage}/>
+                                        <ImageFormStep imageSource={uploadedImage} setUploadedImage={setUploadedImage}/>
                                     </Grid>
                                 </Grid>
                             </Box>
@@ -217,15 +218,15 @@ export default function Form({ setGeneratedCode, setPromptText, setPrompt, promp
                     activeStep === 1 && (
                         <>
                             <SetupFormStep
+                                architecture={architecture}
+                                framework={framework}
                                 isGeneratingCode={isLoading}
                                 programmingLanguage={programmingLanguage}
-                                framework={framework}
-                                architecture={architecture}
-                                wantTest={wantTest}
-                                setProgrammingLanguage={setProgrammingLanguage}
-                                setFramework={setFramework}
                                 setArchitecture={setArchitecture}
+                                setFramework={setFramework}
+                                setProgrammingLanguage={setProgrammingLanguage}
                                 setWantTest={setWantTest}
+                                wantTest={wantTest}
                             />
                         </>
                     )
@@ -237,18 +238,18 @@ export default function Form({ setGeneratedCode, setPromptText, setPrompt, promp
                             <Button
                                 color="inherit"
                                 disabled={activeStep === 0}
-                                onClick={handleBack}
                                 sx={{ mr: 1 }}
+                                onClick={handleBack}
                             >
                                 Back
                             </Button>
                             <Box sx={{ flex: '1 1 auto' }} />
                             {isStepOptional(activeStep) && (
-                                <Button color="inherit" onClick={handleSkip} sx={{ mr: 1 }}>
+                                <Button color="inherit" sx={{ mr: 1 }} onClick={handleSkip}>
                                     Skip
                                 </Button>
                             )}
-                            <Button onClick={handleNext} disabled={!isStepValid()}>
+                            <Button disabled={!isStepValid()} onClick={handleNext}>
                                 {activeStep === NUMBER_OF_STEPS - 1 ? 'Generate code' : 'Next'}
                             </Button>
                         </Box>
@@ -256,7 +257,7 @@ export default function Form({ setGeneratedCode, setPromptText, setPrompt, promp
             </Box>
             {
                 isThereAnyError && (
-                    <ErrorModal open={isThereAnyError} errorMessage={errorMessage} setReset={handleReset}/>
+                    <ErrorModal errorMessage={errorMessage} open={isThereAnyError} setReset={handleReset}/>
                 )
             }
         </>

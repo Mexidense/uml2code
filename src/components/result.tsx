@@ -1,4 +1,4 @@
-import {PromptInfo} from "@uml2code/view/sequence-diagram-to-code";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
     Accordion,
     AccordionDetails,
@@ -6,10 +6,11 @@ import {
     Typography,
     useTheme
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Summary from "@uml2code/components/summary";
-import {CodeBlockViewer} from "@uml2code/components/code-block-viewer";
 import Grid from "@mui/system/Unstable_Grid";
+
+import {CodeBlockViewer} from "@uml2code/components/code-block-viewer";
+import Summary from "@uml2code/components/summary";
+import {PromptInfo} from "@uml2code/view/sequence-diagram-to-code";
 
 interface ResultProps {
     generatedCode: string;
@@ -25,38 +26,38 @@ export default function Result({ generatedCode, promptText, prompt }: ResultProp
         border: '1px',
     }
 
-    return <Grid container justifyContent='center'>
-            <Grid xs={12} md={12} sx={{ mb: 2 }}>
+    return <Grid justifyContent='center' container>
+            <Grid md={12} sx={{ mb: 2 }} xs={12}>
                 <Accordion
-                    sx={ accordionStyle }
                     defaultExpanded={ true }
+                    sx={ accordionStyle }
                 >
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
                         aria-controls="code-content"
+                        expandIcon={<ExpandMoreIcon />}
                         id="code-header"
                     >
-                        <Typography variant="subtitle1" color={theme.palette.primary.main}>Your beautiful generated code 💅</Typography>
+                        <Typography color={theme.palette.primary.main} variant="subtitle1">Your beautiful generated code 💅</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
                         <CodeBlockViewer generatedCode={generatedCode} />
                     </AccordionDetails>
                 </Accordion>
             </Grid>
-            <Grid xs={12} md={12}>
+            <Grid md={12} xs={12}>
                 <Accordion
-                    sx={ accordionStyle }
                     defaultExpanded={ false }
+                    sx={ accordionStyle }
                 >
                     <AccordionSummary
-                        expandIcon={<ExpandMoreIcon />}
                         aria-controls="code-content"
+                        expandIcon={<ExpandMoreIcon />}
                         id="code-header"
                     >
-                        <Typography variant="subtitle1" color={theme.palette.primary.main}>Your request 🙋</Typography>
+                        <Typography color={theme.palette.primary.main} variant="subtitle1">Your request 🙋</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
-                        <Summary image={prompt.imageSource} promptText={promptText} prompt={prompt}/>
+                        <Summary image={prompt.imageSource} prompt={prompt} promptText={promptText}/>
                     </AccordionDetails>
                 </Accordion>
             </Grid>

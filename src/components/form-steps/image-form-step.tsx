@@ -1,10 +1,11 @@
 "use client"
-import {useState} from "react";
-import {ImageFileUploader} from "@uml2code/components/image-file-uploader";
-import Grid from "@mui/system/Unstable_Grid";
 import {Box, Card, CardActionArea, CardMedia} from "@mui/material";
 import Button from "@mui/material/Button";
+import Grid from "@mui/system/Unstable_Grid";
+import {useState} from "react";
 import * as React from "react";
+
+import {ImageFileUploader} from "@uml2code/components/image-file-uploader";
 
 interface ImageFormStepProps {
     setUploadedImage: (value: string|null) => void;
@@ -27,8 +28,8 @@ export function ImageFormStep({ setUploadedImage, imageSource }: ImageFormStepPr
     return (
         <>
             <Box sx={{ width: '100%', alignItems: 'center'}}>
-                <Grid container spacing={2}>
-                    <Grid xs={12} md={12} style={{ textAlign: 'center', alignItems: 'center' }}>
+                <Grid spacing={2} container>
+                    <Grid md={12} style={{ textAlign: 'center', alignItems: 'center' }} xs={12}>
                         {
                             !image && (
                                 <ImageFileUploader setUploadedImage={handleImageUpdate}/>
@@ -39,10 +40,10 @@ export function ImageFormStep({ setUploadedImage, imageSource }: ImageFormStepPr
                                 <Card>
                                     <CardActionArea>
                                         <CardMedia
+                                            alt="UML sequence diagram"
                                             component="img"
                                             height={300}
                                             image={image}
-                                            alt="UML sequence diagram"
                                             sx={{ padding: "1em 1em 0 1em", objectFit: 'cover' }}
                                         />
                                     </CardActionArea>

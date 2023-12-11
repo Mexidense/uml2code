@@ -1,5 +1,6 @@
-import SequenceDiagramToCode from "@uml2code/view/sequence-diagram-to-code";
 import {Metadata} from "next";
+
+import SequenceDiagramToCode from "@uml2code/view/sequence-diagram-to-code";
 
 export const metadata: Metadata = {
     title: 'UML2Code',

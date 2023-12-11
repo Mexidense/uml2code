@@ -1,7 +1,7 @@
-import {Box, Button, Modal, Typography, useTheme} from "@mui/material";
-import {SyntheticEvent, useState} from "react";
-import Image from 'next/image'
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import {Box, Button, Modal, Typography, useTheme} from "@mui/material";
+import Image from 'next/image'
+import {SyntheticEvent, useState} from "react";
 
 interface ErrorModalProps {
     errorMessage: string|null;
@@ -38,41 +38,41 @@ export function ErrorModal ({ errorMessage, open, setReset }: ErrorModalProps) {
 
     return <>
         <Modal
-            disableEscapeKeyDown
+            aria-describedby="modal-modal-description"
+            aria-labelledby="modal-modal-title"
             open={openModal}
+            disableEscapeKeyDown
             // @ts-ignore
             onClose={handleClose}
-            aria-labelledby="modal-modal-title"
-            aria-describedby="modal-modal-description"
         >
             <>
                 <Box sx={style}>
-                    <Typography id="modal-modal-title" textAlign="center" color={theme.palette.primary.main} variant="h5" component="h2">
+                    <Typography color={theme.palette.primary.main} component="h2" id="modal-modal-title" textAlign="center" variant="h5">
                         Open AI is overwhelmed 😢
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         <Image
-                            src="/issue-image-modal.png"
                             alt="OpenAI failed"
-                            loading="lazy"
-                            layout="responsive"
-                            width={400}
                             height={400}
+                            layout="responsive"
+                            loading="lazy"
+                            src="/issue-image-modal.png"
+                            width={400}
                         />
                     </Typography>
                     {
                         errorMessage && (
                             <Box p={2} sx={{ backgroundColor: '#000', color: '#39FF14' }} textAlign="left">
-                                <Typography variant="caption" mt={2}>
+                                <Typography mt={2} variant="caption">
                                     <code>❗️ {errorMessage}</code>
                                 </Typography>
                             </Box>
                         )
                     }
-                    <Typography textAlign="center" mt={2}>
+                    <Typography mt={2} textAlign="center">
                         <Button
-                            sx={{ border: '1px solid #000', borderColor: theme.palette.primary.main }}
                             endIcon={<RestartAltIcon />}
+                            sx={{ border: '1px solid #000', borderColor: theme.palette.primary.main }}
                             onClick={handleOpen}>
                             Try again
                         </Button>
