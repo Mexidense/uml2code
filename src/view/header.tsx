@@ -1,3 +1,5 @@
+import GitHubIcon from '@mui/icons-material/GitHub';
+import MenuIcon from '@mui/icons-material/Menu';
 import {
     AppBar,
     Box, Button,
@@ -10,8 +12,6 @@ import {
     ListItemText, Toolbar,
     Typography
 } from "@mui/material";
-import MenuIcon from '@mui/icons-material/Menu';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import React from "react";
 
 interface Props {
@@ -22,7 +22,7 @@ const drawerWidth = 240;
 type Pages = {
     label: string;
     url: string;
-    icon: JSX.Element
+    icon: React.JSX.Element
 }
 const navItems: Pages[] = [
     {

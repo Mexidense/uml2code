@@ -1,3 +1,5 @@
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import ScienceIcon from "@mui/icons-material/Science";
 import {
     Box,
     Card,
@@ -7,14 +9,14 @@ import {
     Collapse,
     Grid,
     IconButton,
-    IconButtonProps, styled,
-    Typography, useTheme
+    IconButtonProps, Typography,
+    styled, useTheme
 } from "@mui/material";
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import {useState} from "react";
-import {PromptInfo} from "@uml2code/view/sequence-diagram-to-code";
-import ScienceIcon from "@mui/icons-material/Science";
 import {CloseIcon} from "next/dist/client/components/react-dev-overlay/internal/icons/CloseIcon";
+import {useState} from "react";
+
+import {PromptInfo} from "@uml2code/view/sequence-diagram-to-code";
+
 
 interface ExpandMoreProps extends IconButtonProps {
     expand: boolean;

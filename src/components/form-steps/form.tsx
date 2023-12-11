@@ -1,22 +1,23 @@
-import * as React from 'react';
+import {useTheme} from "@mui/material";
 import Box from '@mui/material/Box';
-import Stepper from '@mui/material/Stepper';
+import Button from '@mui/material/Button';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import Button from '@mui/material/Button';
+import Stepper from '@mui/material/Stepper';
 import Typography from '@mui/material/Typography';
-import {ImageFormStep} from "@uml2code/components/form-steps/image-form-step";
-import {useState} from "react";
-import {PromptInfo} from "@uml2code/view/sequence-diagram-to-code";
 import Grid from "@mui/system/Unstable_Grid";
-import Spinner from '@uml2code/components/spinner';
-import SetupFormStep from "@uml2code/components/form-steps/setup-form-step";
+import {useState} from "react";
+import * as React from 'react';
+
 import {
     GenerateCodeFromSequenceDiagramRequest,
     GenerateCodeFromSequenceDiagramResponse
 } from "@uml2code/back-end/generate-code/generate-code-from-sequence-diagram.service";
-import {useTheme} from "@mui/material";
+import {ImageFormStep} from "@uml2code/components/form-steps/image-form-step";
+import SetupFormStep from "@uml2code/components/form-steps/setup-form-step";
+import Spinner from '@uml2code/components/spinner';
 import {ErrorModal} from "@uml2code/modals/error-modal";
+import {PromptInfo} from "@uml2code/view/sequence-diagram-to-code";
 
 interface ImageFormStepProps {
     prompt?: PromptInfo|undefined;

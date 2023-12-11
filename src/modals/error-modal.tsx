@@ -1,7 +1,7 @@
-import {Box, Button, Modal, Typography, useTheme} from "@mui/material";
-import {SyntheticEvent, useState} from "react";
-import Image from 'next/image'
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
+import {Box, Button, Modal, Typography, useTheme} from "@mui/material";
+import Image from 'next/image'
+import {SyntheticEvent, useState} from "react";
 
 interface ErrorModalProps {
     errorMessage: string|null;

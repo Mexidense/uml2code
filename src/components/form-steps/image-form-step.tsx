@@ -1,10 +1,11 @@
 "use client"
-import {useState} from "react";
-import {ImageFileUploader} from "@uml2code/components/image-file-uploader";
-import Grid from "@mui/system/Unstable_Grid";
 import {Box, Card, CardActionArea, CardMedia} from "@mui/material";
 import Button from "@mui/material/Button";
+import Grid from "@mui/system/Unstable_Grid";
+import {useState} from "react";
 import * as React from "react";
+
+import {ImageFileUploader} from "@uml2code/components/image-file-uploader";
 
 interface ImageFormStepProps {
     setUploadedImage: (value: string|null) => void;

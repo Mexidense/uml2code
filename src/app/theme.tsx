@@ -1,5 +1,5 @@
-import { createTheme } from '@mui/material/styles';
 import { responsiveFontSizes } from "@mui/material";
+import { createTheme } from '@mui/material/styles';
 
 let theme = createTheme({
     palette: {

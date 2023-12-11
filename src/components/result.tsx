@@ -1,4 +1,4 @@
-import {PromptInfo} from "@uml2code/view/sequence-diagram-to-code";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {
     Accordion,
     AccordionDetails,
@@ -6,10 +6,11 @@ import {
     Typography,
     useTheme
 } from "@mui/material";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Summary from "@uml2code/components/summary";
-import {CodeBlockViewer} from "@uml2code/components/code-block-viewer";
 import Grid from "@mui/system/Unstable_Grid";
+
+import {CodeBlockViewer} from "@uml2code/components/code-block-viewer";
+import Summary from "@uml2code/components/summary";
+import {PromptInfo} from "@uml2code/view/sequence-diagram-to-code";
 
 interface ResultProps {
     generatedCode: string;

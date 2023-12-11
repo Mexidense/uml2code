@@ -1,11 +1,13 @@
 "use client"
-import {useState} from "react";
-import Grid from "@mui/system/Unstable_Grid";
-import {Box, SpeedDial, SpeedDialAction, SpeedDialIcon, Typography} from "@mui/material";
-import Form from "@uml2code/components/form-steps/form";
-import Result from "@uml2code/components/result";
 import AutorenewIcon from "@mui/icons-material/Autorenew";
 import EditIcon from "@mui/icons-material/Edit";
+import {Box, SpeedDial, SpeedDialAction, SpeedDialIcon, Typography} from "@mui/material";
+import Grid from "@mui/system/Unstable_Grid";
+import {useState} from "react";
+
+import Form from "@uml2code/components/form-steps/form";
+import Result from "@uml2code/components/result";
+
 
 export type PromptInfo = {
     imageSource: string;

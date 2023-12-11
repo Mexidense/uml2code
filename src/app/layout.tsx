@@ -1,17 +1,20 @@
 "use client"
-import { Inter } from 'next/font/google'
-import {getTheme} from "@uml2code/app/theme";
 import {Box, Container, CssBaseline, ThemeProvider} from "@mui/material";
+import { Analytics } from '@vercel/analytics/react';
+import { Inter } from 'next/font/google'
+import { ReactNode } from 'react';
+
+import {getTheme} from "@uml2code/app/theme";
 import Header from "@uml2code/view/header";
 import {StickyFooter} from "@uml2code/view/sticky-footer";
-import { Analytics } from '@vercel/analytics/react';
+
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: ReactNode
 }) {
   return (
       <ThemeProvider theme={getTheme()}>

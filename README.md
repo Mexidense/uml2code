@@ -42,4 +42,4 @@ We welcome contributions from the community. Whether it's fixing bugs, enhancing
 This project is licensed under the MIT License.
 
 ---
-Empowered by [OpenAI](https://openai.com/) and made with love by [Salvador Briones](https://github.com/Mexidense).  🚀✨
+Empowered by [OpenAI](https://openai.com/) & made with love by [Salvador Briones](https://github.com/Mexidense).  🚀✨
