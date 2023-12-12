@@ -1,6 +1,5 @@
 "use client"
 import {Box, Container, CssBaseline, ThemeProvider} from "@mui/material";
-import { Analytics } from '@vercel/analytics/react';
 import { Inter } from 'next/font/google'
 import { ReactNode } from 'react';
 
@@ -26,7 +25,6 @@ export default function RootLayout({
                     <Box sx={{ marginTop: 10 }}>
                         <div className={inter.className}>
                             {children}
-                            <Analytics />
                         </div>
                     </Box>
                     <StickyFooter />
