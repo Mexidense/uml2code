@@ -45,4 +45,5 @@ jobs:
             --platform managed \
             --region $CLOUD_RUN_REGION \
             --allow-unauthenticated \
-            --quiet
+            --quiet \
+            --set-env-vars OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
