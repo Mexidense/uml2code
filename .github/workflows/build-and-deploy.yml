@@ -13,6 +13,7 @@ env:
 jobs:
   build-and-deploy:
     name: Setup, Build, and Deploy
+    environment: production
     runs-on: ubuntu-latest
     steps:
 
